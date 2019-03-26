@@ -1,0 +1,25 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>Timesheet Details</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    {{timesheetDetails.hospital}}
+    {{timesheetDetails.monthOf}}
+    <ion-item *ngFor="let entry of timesheetDetails.entries">
+      {{entry.activity}}
+      {{entry.date}}
+      {{entry.expendedTime}}
+      {{entry.hospital}}
+
+
+      {{entry.dutyNo}}
+
+
+
+    </ion-item>
+  </ion-card>
+</ion-content>
