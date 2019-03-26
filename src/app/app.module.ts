@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -17,12 +18,14 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { CONFIG } from '../assets/env';
 import { HelperProvider } from '../providers/helper/helper';
 import { HttpClientModule } from '@angular/common/http'; 
+import { EntriesPage } from '../pages/entries/entries';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    EntriesPage
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { HttpClientModule } from '@angular/common/http';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    EntriesPage
   ],
   providers: [
     StatusBar,

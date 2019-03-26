@@ -17,12 +17,15 @@
       </div>
     </button> -->
 
-    <ul>
-      <li class="text" *ngFor="let item of items | async">
+
+      <ion-item  *ngFor="let item of items | async"  (click)="itemTapped($event, item)">
+
         {{item.hospital}}
-        <p>{{item.monthOf}}</p>
-      </li>
-    </ul>
+
+        {{item.monthOf}}
+
+    </ion-item>
+
   </ion-list>
   <div *ngIf="selectedItem" padding>
     You navigated here from <b>{{selectedItem.title}}</b>

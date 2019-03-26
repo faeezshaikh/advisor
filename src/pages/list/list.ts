@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Observable } from 'rxjs';
 import { HelperProvider } from '../../providers/helper/helper';
+import { EntriesPage } from '../entries/entries';
 
 @Component({
   selector: 'page-list',
@@ -34,8 +35,9 @@ export class ListPage {
   }
 
   itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(ListPage, {
+    console.log('Tapped:',item);
+    
+    this.navCtrl.push(EntriesPage, {
       item: item
     });
   }
