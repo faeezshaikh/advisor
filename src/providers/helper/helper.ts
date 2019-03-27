@@ -40,6 +40,7 @@ export class HelperProvider {
       let obj = {
         id: docRef.id
       }
+      // Adding the id field on the object, so that it can easily deleted or found by 'id' later
       that.db.doc(that.collection_endpoint + '/' + docRef.id).update(obj);
 
   })
