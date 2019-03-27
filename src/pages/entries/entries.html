@@ -7,18 +7,22 @@
 
 <ion-content padding>
   <ion-card>
-    {{timesheetDetails.hospital}}
-    {{timesheetDetails.monthOf}}
+      <ion-item >
+    <h2><strong>Hospital: </strong>{{timesheetDetails.hospital}}</h2>
+    <h2><strong>Month of: </strong>{{timesheetDetails.monthOf}}</h2>
+  </ion-item>
   </ion-card>
 
 
   <ion-list>
   
-
+      <ion-list-header>
+          <ion-label>Entries</ion-label>
+        </ion-list-header>
 
       <ion-item-sliding  *ngFor="let entry of entries | async | reverse">
 
-        Duty No: {{entry.dutyNo}}
+      
 
       
 
@@ -26,7 +30,8 @@
         <ion-item   (click)="itemTapped($event, item)" detail>
           
             <h2> Expended Time:  {{entry.expendedTime}}</h2>
-            <p>  Date: {{entry.date}}</p>
+            <p>  Date: {{entry.entryDate}}</p>
+            <p>Duty No: {{entry.dutyNo}}</p>
             <p> Activities: {{entry.activities}}</p>
             <button (click)="your_function_name()" ion-button clear item-end>
                 <ion-icon name="arrow-round-forward"></ion-icon>
