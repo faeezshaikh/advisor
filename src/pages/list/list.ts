@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams,ModalController } from 'ionic-angular';
 import { Observable } from 'rxjs';
 import { HelperProvider } from '../../providers/helper/helper';
 import { EntriesPage } from '../entries/entries';
+import { NewtimesheetPage } from '../newtimesheet/newtimesheet';
 
 @Component({
   selector: 'page-list',
@@ -14,7 +15,7 @@ export class ListPage {
   items: Observable<any[]>;
   // items: Array<{title: string, note: string, icon: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public helper:HelperProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public helper:HelperProvider,private modalCtrl:ModalController) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
 
@@ -42,7 +43,10 @@ export class ListPage {
     });
   }
 
-  addTimesheet(){
-    this.helper.addTimesheet("user1","New Harvard","June 2019");
+
+
+  openTimesheetModal() {
+      let profileModal = this.modalCtrl.create(NewtimesheetPage, { userId: 8675309 });
+      profileModal.present();
   }
 }

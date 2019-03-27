@@ -19,13 +19,15 @@ import { CONFIG } from '../assets/env';
 import { HelperProvider } from '../providers/helper/helper';
 import { HttpClientModule } from '@angular/common/http'; 
 import { EntriesPage } from '../pages/entries/entries';
+import { NewtimesheetPage } from '../pages/newtimesheet/newtimesheet';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    EntriesPage
+    EntriesPage,
+    NewtimesheetPage
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,8 @@ import { EntriesPage } from '../pages/entries/entries';
     MyApp,
     HomePage,
     ListPage,
-    EntriesPage
+    EntriesPage,
+    NewtimesheetPage
   ],
   providers: [
     StatusBar,
