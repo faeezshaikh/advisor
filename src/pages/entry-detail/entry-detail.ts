@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams ,ViewController} from 'ionic-angular';
+import { HelperProvider } from '../../providers/helper/helper';
 
 
 @Component({
@@ -8,9 +9,17 @@ import { NavController, NavParams ,ViewController} from 'ionic-angular';
 })
 export class EntryDetailPage {
   hospital;
+  expendedTime;
+  entryDate;
+  dutyNo;
+  activities;
+  timesheetId;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private viewCtrl:ViewController) {
+
+  constructor(public navCtrl: NavController, 
+    private helper: HelperProvider, public navParams: NavParams,private viewCtrl:ViewController) {
     this.hospital = this.navParams.get('hospital');
+    this.timesheetId = this.navParams.get('timesheetId');
     console.log('Hospital:',this.navParams.get('hospital'));
     
   }
@@ -21,5 +30,12 @@ export class EntryDetailPage {
 
   dismiss() {
     this.viewCtrl.dismiss();
+  }
+  addEntry(){
+    this.helper.addEntryToTimesheet(this.timesheetId,this.hospital,this.expendedTime,
+      this.entryDate,this.dutyNo,this.activities);
+
+      this.dismiss();
+
   }
 }

@@ -19,6 +19,10 @@ export class HelperProvider {
  return this.db.collection('user1').valueChanges();
   }
 
+  getTimesheetEntries(timesheetId){
+    return this.db.collection('user1').doc(timesheetId).collection('entries').valueChanges();
+  }
+
   deleteTimesheet(timesheet){
     console.log('Timesheet details:',timesheet);
     
@@ -31,7 +35,7 @@ export class HelperProvider {
 
   addTimesheet(userId,hospital,monthOf){
     let that = this;
-    this.db.collection(userId,).add({
+    this.db.collection(userId).add({
       hospital: hospital,
       monthOf: monthOf
   })
@@ -49,5 +53,33 @@ export class HelperProvider {
   });
   
   }
+
+
+  addEntryToTimesheet(timesheetId,hospital,expendedTime,
+    entryDate,dutyNo,activities){
+let that = this;
+      this.db.collection('user1').doc(timesheetId).collection('entries').
+      add({
+        hospital: hospital,
+        expendedTime: expendedTime,
+        entryDate: entryDate,
+        dutyNo:dutyNo,
+        activities:activities
+    })
+    .then(function(docRef) {
+        console.log("Document written with ID: ", docRef.id);
+        let obj = {
+          id: docRef.id
+        }
+        // Adding the id field on the object, so that it can easily deleted or found by 'id' later
+        that.db.doc(that.collection_endpoint + '/' + timesheetId + '/entries/' +docRef.id).update(obj);
+  
+    })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+    });
+
+  }
+
 
 }
