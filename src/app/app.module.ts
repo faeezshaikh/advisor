@@ -21,7 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EntriesPage } from '../pages/entries/entries';
 import { NewtimesheetPage } from '../pages/newtimesheet/newtimesheet';
 import { ReversePipe } from '../providers/helper/reversePipe';
-import { EntryDetailPage } from '../pages/entry-detail/entry-detail';
+import { NewEntryPage } from '../pages/newentry/newentry';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,7 @@ import { EntryDetailPage } from '../pages/entry-detail/entry-detail';
     EntriesPage,
     NewtimesheetPage,
     ReversePipe,
-    EntryDetailPage
+    NewEntryPage
   ],
   imports: [
     BrowserModule,
@@ -47,7 +47,7 @@ import { EntryDetailPage } from '../pages/entry-detail/entry-detail';
     HomePage,
     ListPage,
     EntriesPage,
-    EntryDetailPage,
+    NewEntryPage,
     NewtimesheetPage
   ],
   providers: [

@@ -4,10 +4,10 @@ import { HelperProvider } from '../../providers/helper/helper';
 
 
 @Component({
-  selector: 'page-entry-detail',
-  templateUrl: 'entry-detail.html',
+  selector: 'newentry',
+  templateUrl: 'newentry.html',
 })
-export class EntryDetailPage {
+export class NewEntryPage {
   hospital;
   expendedTime;
   entryDate;

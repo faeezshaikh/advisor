@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams,ModalController } from 'ionic-angular';
-import { EntryDetailPage } from '../entry-detail/entry-detail';
+import { NewEntryPage } from '../newentry/newentry';
 import { HelperProvider } from '../../providers/helper/helper';
 import { Observable } from 'rxjs';
 
@@ -27,7 +27,7 @@ export class EntriesPage {
   }
 
   openEntryModal() {
-    let profileModal = this.modalCtrl.create(EntryDetailPage, { hospital: this.timesheetDetails.hospital, timesheetId: this.timesheetDetails.id });
+    let profileModal = this.modalCtrl.create(NewEntryPage, { hospital: this.timesheetDetails.hospital, timesheetId: this.timesheetDetails.id });
     profileModal.present();
 }
   
