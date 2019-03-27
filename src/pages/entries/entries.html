@@ -1,6 +1,6 @@
 
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Timesheet Details</ion-title>
   </ion-navbar>
 </ion-header>
@@ -22,4 +22,10 @@
 
     </ion-item>
   </ion-card>
+
+  <ion-fab bottom right>
+      <button id="createButton" ion-fab color="primary" (click)="menu2Active()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-fab>
 </ion-content>

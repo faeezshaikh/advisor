@@ -18,4 +18,19 @@ export class HelperProvider {
  return this.db.collection('user1').valueChanges();
   }
 
+
+  addTimesheet(userId,hospital,monthOf){
+    this.db.collection(userId,).add({
+      hospital: hospital,
+      monthOf: monthOf
+  })
+  .then(function(docRef) {
+      console.log("Document written with ID: ", docRef.id);
+  })
+  .catch(function(error) {
+      console.error("Error adding document: ", error);
+  });
+  
+  }
+
 }

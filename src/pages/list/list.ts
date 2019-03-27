@@ -41,4 +41,8 @@ export class ListPage {
       item: item
     });
   }
+
+  addTimesheet(){
+    this.helper.addTimesheet("user1","New Harvard","June 2019");
+  }
 }
