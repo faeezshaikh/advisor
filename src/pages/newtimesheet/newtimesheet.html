@@ -20,8 +20,16 @@
           <!-- <ion-input [(ngModel)]="text" name="password" id='pwd' type="password" required></ion-input> -->
           <ion-datetime display-format="MM/YYYY" picker-format="MMMM YYYY" name="monthOf" [(ngModel)]="monthOf" required></ion-datetime>
         </ion-item>
-              
-        <button  ion-button full block color="primary" (click)="addTimesheet()"  [disabled]="!meterForm.valid" ><ion-icon name="log-in"></ion-icon>&nbsp;&nbsp;Create</button>
+        <ion-row>
+          <ion-col>
+            <button  ion-button full block color="danger" (click)="dismiss()" ><ion-icon name="close"></ion-icon>&nbsp;&nbsp;Cancel</button>      
+
+          </ion-col>
+          <ion-col>
+            <button  ion-button full block color="primary" (click)="addTimesheet()"  [disabled]="!meterForm.valid" ><ion-icon name="log-in"></ion-icon>&nbsp;&nbsp;Create</button>
+
+          </ion-col>
+      </ion-row>
       </form>
       </ion-card-content>
   </ion-card>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams ,ViewController} from 'ionic-angular';
 
 
 @Component({
@@ -8,11 +8,14 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class EntryDetailPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private viewCtrl:ViewController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EntryDetailPage');
   }
 
+  dismiss() {
+    this.viewCtrl.dismiss();
+  }
 }
