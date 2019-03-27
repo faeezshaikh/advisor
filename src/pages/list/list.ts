@@ -43,6 +43,9 @@ export class ListPage {
     });
   }
 
+  deleteItem(e,item){
+    this.helper.deleteTimesheet(item);
+  }
 
 
   openTimesheetModal() {

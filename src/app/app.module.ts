@@ -20,6 +20,7 @@ import { HelperProvider } from '../providers/helper/helper';
 import { HttpClientModule } from '@angular/common/http'; 
 import { EntriesPage } from '../pages/entries/entries';
 import { NewtimesheetPage } from '../pages/newtimesheet/newtimesheet';
+import { ReversePipe } from '../providers/helper/reversePipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { NewtimesheetPage } from '../pages/newtimesheet/newtimesheet';
     HomePage,
     ListPage,
     EntriesPage,
-    NewtimesheetPage
+    NewtimesheetPage,
+    ReversePipe
   ],
   imports: [
     BrowserModule,
