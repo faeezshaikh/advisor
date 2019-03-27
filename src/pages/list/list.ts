@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams,ModalController } from 'ionic-angular';
+import { NavController, NavParams,ModalController,AlertController } from 'ionic-angular';
 import { Observable } from 'rxjs';
 import { HelperProvider } from '../../providers/helper/helper';
 import { EntriesPage } from '../entries/entries';
@@ -15,7 +15,7 @@ export class ListPage {
   items: Observable<any[]>;
   // items: Array<{title: string, note: string, icon: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public helper:HelperProvider,private modalCtrl:ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public helper:HelperProvider,private modalCtrl:ModalController,public alertController: AlertController) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
 
@@ -43,7 +43,7 @@ export class ListPage {
     });
   }
 
-  deleteItem(e,item){
+  deleteItem(item){
     this.helper.deleteTimesheet(item);
   }
 
@@ -52,4 +52,31 @@ export class ListPage {
       let profileModal = this.modalCtrl.create(NewtimesheetPage, { userId: 8675309 });
       profileModal.present();
   }
+
+
+  async presentAlertConfirm(item) {
+    const alert = await this.alertController.create({
+
+      message: 'Are you sure you want to delete this timesheet for ' + item.hospital,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Okay',
+          handler: () => {
+            console.log('Confirm Okay');
+            this.deleteItem(item);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
 }
