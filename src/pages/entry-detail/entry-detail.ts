@@ -7,8 +7,12 @@ import { NavController, NavParams ,ViewController} from 'ionic-angular';
   templateUrl: 'entry-detail.html',
 })
 export class EntryDetailPage {
+  hospital;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private viewCtrl:ViewController) {
+    this.hospital = this.navParams.get('hospital');
+    console.log('Hospital:',this.navParams.get('hospital'));
+    
   }
 
   ionViewDidLoad() {

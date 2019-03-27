@@ -19,7 +19,7 @@ export class EntriesPage {
   }
 
   openEntryModal() {
-    let profileModal = this.modalCtrl.create(EntryDetailPage, { userId: 8675309 });
+    let profileModal = this.modalCtrl.create(EntryDetailPage, { hospital: this.timesheetDetails.hospital });
     profileModal.present();
 }
   

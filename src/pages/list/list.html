@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>List</ion-title>
+    <ion-title>My Timesheets</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -18,30 +18,37 @@
     </button> -->
 
 
-      <ion-item-sliding  *ngFor="let item of items | async | reverse" >
+      <ion-item-sliding  *ngFor="let item of items | async | reverse">
 
         {{item.hospital}}
 
       
 
 
-        <ion-item  (click)="itemTapped($event, item)">
+        <ion-item   (click)="itemTapped($event, item)" detail>
           
             <h2>   {{item.hospital}}</h2>
             <p>  {{item.monthOf}}</p>
+            <button (click)="your_function_name()" ion-button clear item-end>
+                <ion-icon name="arrow-round-forward"></ion-icon>
+              </button>
           </ion-item>
 
-<!-- 
+
         <ion-item-options side="left">
-            <button ion-button color="primary" (click)="tbd()">
+            <!-- <button ion-button color="primary" (click)="tbd()">
               <ion-icon name="text"></ion-icon>
               Text
             </button>
             <button ion-button color="secondary"  (click)="tbd()">
               <ion-icon name="call"></ion-icon>
               Call
-            </button>
-          </ion-item-options> -->
+            </button> -->
+            <button ion-button color="danger"  (click)="presentAlertConfirm(item)">
+                <ion-icon name="trash"></ion-icon>
+                Delete
+              </button>
+          </ion-item-options>
           <ion-item-options side="right">
             <button ion-button color="danger"  (click)="presentAlertConfirm(item)">
               <ion-icon name="trash"></ion-icon>
