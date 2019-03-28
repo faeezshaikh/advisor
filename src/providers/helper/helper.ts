@@ -54,6 +54,25 @@ export class HelperProvider {
   
   }
 
+  updateEntryInTimesheet(entryId,timesheetId,hospital,expendedTime,
+    entryDate,dutyNo,activities){
+      let that = this;
+            this.db.collection('user1').doc(timesheetId).collection('entries').doc(entryId).
+            update({
+              hospital: hospital,
+              expendedTime: expendedTime,
+              entryDate: entryDate,
+              dutyNo:dutyNo,
+              activities:activities
+          })
+          .then(function(docRef) {
+              console.log("Document updated successfully");
+          })
+          .catch(function(error) {
+              console.error("Error adding document: ", error);
+          });
+      
+        }
 
   addEntryToTimesheet(timesheetId,hospital,expendedTime,
     entryDate,dutyNo,activities){

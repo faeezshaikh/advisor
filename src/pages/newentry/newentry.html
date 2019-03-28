@@ -65,7 +65,8 @@
   
             </ion-col>
             <ion-col>
-              <button  ion-button full block color="primary" (click)="addEntry()"  [disabled]="!companyForm.valid" ><ion-icon name="checkmark-circle-outline"></ion-icon>&nbsp;&nbsp;Add</button>
+              <button *ngIf="!updateMode"  ion-button full block color="primary" (click)="addEntry()"  [disabled]="!companyForm.valid" ><ion-icon name="checkmark-circle-outline"></ion-icon>&nbsp;&nbsp;Add</button>
+              <button *ngIf="updateMode" ion-button full block color="primary" (click)="updateEntry()"  [disabled]="!companyForm.valid" ><ion-icon name="checkmark-circle-outline"></ion-icon>&nbsp;&nbsp;Save</button>
   
             </ion-col>
         </ion-row>
