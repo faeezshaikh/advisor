@@ -17,7 +17,7 @@
   <ion-list>
   
       <ion-list-header>
-          <ion-label>Entries</ion-label>
+          <ion-label>Activities</ion-label>
         </ion-list-header>
 
       <ion-item-sliding  *ngFor="let entry of entries | async | reverse">
@@ -32,7 +32,7 @@
             <h2> Expended Time:  {{entry.expendedTime}}</h2>
             <p>  Date: {{entry.entryDate}}</p>
             <p>Duty No: {{entry.dutyNo}}</p>
-            <p> Activities: {{entry.activities}}</p>
+            <p> Activity: {{entry.activities}}</p>
             <button (click)="your_function_name()" ion-button clear item-end>
                 <ion-icon name="arrow-round-forward"></ion-icon>
               </button>
