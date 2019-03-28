@@ -10,7 +10,12 @@
  
   <ion-card>
       <ion-card-header>
-         <h2> Hospital: {{hospital}}</h2>
+         <!-- <h2> Hospital: {{hospital}}</h2> -->
+         <ion-item>
+            <ion-icon name="medkit" item-start large></ion-icon>
+            <h2>Hospital:  {{hospital}}</h2>
+            <!-- <p>Month of:  {{timesheetDetails.monthOf}}</p> -->
+          </ion-item>
       </ion-card-header>
       <form #companyForm="ngForm">
 
