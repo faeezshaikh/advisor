@@ -16,6 +16,7 @@ export class MyApp {
 
   rootPage: any = LoginPage;
   loggedIn:boolean = false;
+  loggedinUser:any;
 
   pages: Array<{title: string, component: any,icon:string}>;
 
@@ -95,6 +96,9 @@ export class MyApp {
       return true; // yes session is expired
     } else {
         this.loggedIn = true;
+        this.loggedinUser = user;
+        console.log('Logged in user:',this.loggedinUser);
+        
         return false; // session not expired
     }
   }

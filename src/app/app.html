@@ -6,6 +6,25 @@
   </ion-header>
 
   <ion-content>
+
+
+      <ion-card>
+        <ion-row>
+          <ion-col col-2>&nbsp;</ion-col>
+          <ion-col col-8><img style="border-radius:50%" src="{{loggedinUser.photoURL}}" alt=""></ion-col>
+          <ion-col col-2>&nbsp;</ion-col>
+        </ion-row>
+          
+          <!-- <div class="card-title">{{accountDetail?.account?.attributes?.givenName}} {{accountDetail?.account?.attributes?.lastName}}</div>÷ -->
+          <div class="card-title">Joe Richter</div>
+          <div class="card-subtitle">{{loggedinUser.email}} </div>
+
+          <p>&nbsp;</p>
+          <hr/>
+        </ion-card>
+
+
+
     <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
           <ion-icon item-left name="{{p.icon}}"></ion-icon>

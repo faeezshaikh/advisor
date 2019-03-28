@@ -118,7 +118,7 @@ setLoggedInUserProfile(user) {
   this.loggedInUser.email = user.email;
   this.loggedInUser.name = user.name;
   this.loggedInUser.photoURL = user.photoURL;
-  localStorage.setItem('user',user);
+  localStorage.setItem('user',JSON.stringify(user));
 }
 
 
@@ -131,6 +131,6 @@ deleteFromStorage(key){
 getLoggedInUserProfile() {
   let user = localStorage.getItem('user');
   console.log('Returning user:' , user);
-  return user;
+  return JSON.parse(user);
 }
 }
