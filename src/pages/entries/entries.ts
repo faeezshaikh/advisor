@@ -33,8 +33,9 @@ export class EntriesPage {
 }
   
   itemTapped(e,entry){
+    entry.timesheetId = this.timesheetDetails.id;
     console.log('Entry details:',entry);
-    this.navCtrl.push(EntryDetailPage,{entry:entry});
+    this.navCtrl.push(NewEntryPage,{entry:entry});
     
 
 
