@@ -17,7 +17,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any,icon:string}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen ,   public events:Events) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -42,4 +42,13 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+
+  logout() {
+    console.log("Publishing logout event");
+    // localStorage.removeItem('r'); 
+    this.dataService.deleteFromStorage("email");
+    this.events.publish('user:logout');
+  
+  }
+
 }

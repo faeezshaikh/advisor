@@ -3,10 +3,12 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
+
 @Injectable()
 export class HelperProvider {
   items: Observable<any[]>;
   collection_endpoint = 'user1';
+  loggedInUser:any= {};
   constructor(public http: HttpClient, public db: AngularFirestore) {
     console.log('Hello HelperProvider Provider');
 
@@ -108,4 +110,27 @@ export class HelperProvider {
       });
 
   }
+
+
+
+setLoggedInUserProfile(user) {
+  console.log('User set to :' , user);
+  this.loggedInUser.email = user.email;
+  this.loggedInUser.name = user.name;
+  this.loggedInUser.photoURL = user.photoURL;
+  localStorage.setItem('user',user);
+}
+
+
+deleteFromStorage(key){
+  console.log('Removing from storage  :' , key);
+  if(key!=null)
+    // this.storage.remove(key);
+    localStorage.removeItem(key);
+}
+getLoggedInUserProfile() {
+  let user = localStorage.getItem('user');
+  console.log('Returning user:' , user);
+  return user;
+}
 }

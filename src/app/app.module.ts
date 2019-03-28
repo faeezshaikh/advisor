@@ -25,6 +25,7 @@ import { NewEntryPage } from '../pages/newentry/newentry';
 import { DutiesPage } from '../pages/duties/duties';
 import { LoginPage } from '../pages/login/login';
 import { AuthService } from '../providers/helper/authservice';
+import { EventsService } from '../providers/helper/eventsService';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { AuthService } from '../providers/helper/authservice';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     HelperProvider,
-    AuthService
+    AuthService,
+    EventsService
   ]
 })
 export class AppModule {}

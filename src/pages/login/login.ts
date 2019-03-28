@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {  NavController, NavParams } from 'ionic-angular';
 import { AuthService } from '../../providers/helper/authservice';
 import { ListPage } from '../list/list';
+import { HelperProvider } from '../../providers/helper/helper';
+import { EventsService } from '../../providers/helper/eventsService';
 
 @Component({
   selector: 'page-login',
@@ -9,7 +11,8 @@ import { ListPage } from '../list/list';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private authService:AuthService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private authService:AuthService,private helper:HelperProvider,
+    private eventsService:EventsService) {
   }
 
   ionViewDidLoad() {
@@ -20,14 +23,8 @@ export class LoginPage {
     this.authService.doTwitterLogin()
     .then(res => {
       console.log('Success with Twitter',res);
-      if(res.user.email != null )
-      //    this.dataService.setLoggedInUserEmail(res.user.email);
-      res.user.email;
-      else 
-      res.user.displayName;
-      res.user.photoURL;
-          // this.dataService.setLoggedInUserEmail(res.user.displayName);
-      // this.eventService.sendLoggedInEvent();
+      this.helper.setLoggedInUserProfile({'email': res.user.email, 'name':res.user.displayName,'photoURL':res.user.photoURL});
+      this.eventsService.sendLoggedInEvent();
       this.navCtrl.setRoot(ListPage);
 
     })
@@ -39,13 +36,20 @@ export class LoginPage {
     this.authService.doGoogleLogin()
     .then(res => {
       console.log('Success with Google',res);
-      ////
-      // res.user.email;
-      // res.user.displayName;
-      // res.user.photoURL;
-      ////
-      // this.dataService.setLoggedInUserEmail(res.user.email);
-      // this.eventService.sendLoggedInEvent();
+      this.helper.setLoggedInUserProfile({'email': res.user.email, 'name':res.user.displayName,'photoURL':res.user.photoURL});
+      this.eventsService.sendLoggedInEvent();
+      this.navCtrl.setRoot(ListPage);
+
+    })
+  }
+
+  signMeInWithFacebook(){
+    this.authService.doFacebookLogin()
+    .then(res => {
+      console.log('Success with Facebook',res);
+
+      this.helper.setLoggedInUserProfile({'email': res.user.email, 'name':res.user.displayName,'photoURL':res.user.photoURL});
+      this.eventsService.sendLoggedInEvent();
       this.navCtrl.setRoot(ListPage);
 
     })
