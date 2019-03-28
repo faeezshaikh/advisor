@@ -9,7 +9,7 @@
 
     <ion-searchbar placeholder="Search for duties"  [showCancelButton]="shouldShowCancel" (ionInput)="filterItems($event)" (ionCancel)="onCancel($event)">
       </ion-searchbar>
-  <ion-card *ngFor="let duty of duties | async" >
+  <ion-card *ngFor="let duty of duties | async"  (click) = "itemTapped(duty)">
       <ion-card-header>
           Duty No: {{duty.no}}
         </ion-card-header>

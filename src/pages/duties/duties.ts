@@ -20,6 +20,11 @@ export class DutiesPage {
     console.log('ionViewDidLoad DutiesPage');
   }
 
+  itemTapped(duty){
+    this.navCtrl.getPrevious().data.duty = duty;
+     this.navCtrl.pop();
+  }
+
   filterItems(ev: any) {
 
     this.duties = this.helper.getAdvisorDuties();

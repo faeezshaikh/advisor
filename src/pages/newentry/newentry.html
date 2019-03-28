@@ -21,12 +21,12 @@
             </ion-item> -->
 
           <ion-item class="mycolor">
-              <ion-label position="stacked">Date</ion-label>
+              <ion-label position="stacked">Date : </ion-label>
               <ion-datetime   class="form-control"    name="entry-date" display-format="MM/YYYY" picker-format="MMMM YYYY" [(ngModel)]="entryDate" required></ion-datetime>
             </ion-item>
 
             <ion-item class="mycolor">
-                <ion-label position="stacked">Expended Time </ion-label>
+                <ion-label position="stacked">Expended Time (hrs) :  </ion-label>
 
                 <ion-input type="number" 
                 class="form-control" 
@@ -37,22 +37,39 @@
                 required></ion-input>
               </ion-item>
 
+           
+              <ion-item>
+                  <button (click)="openDuties()" ion-button icon-start>
+                    <ion-icon name="search"></ion-icon>
+                    Lookup Duty
+                    </button>
+                    
+              </ion-item>
               <ion-item class="mycolor">
-                  <ion-label position="stacked">Duty No &nbsp;<ion-icon name="search" (click)= "openDuties()"> </ion-icon></ion-label>
+
+
+                          <ion-label position="stacked">Duty No : </ion-label>
   
-                  <ion-input type="number" 
-                  class="form-control" 
-                  name="duty-no"
-                  ngModel
-                  #nameField="ngModel"
-                  [(ngModel)] = "dutyNo"
-                  required></ion-input>
+                          <ion-input type="number" 
+                          class="form-control" 
+                          name="duty-no"
+                          ngModel
+                          #nameField="ngModel"
+                          [(ngModel)] = "dutyNo"
+                          required></ion-input>
+                        
+
+
+
+
+
+             
                   
                 </ion-item>
 
 
                 <ion-item class="mycolor">
-                    <ion-label position="stacked">Activities</ion-label>
+                    <ion-label position="stacked">Activity : </ion-label>
 
                     <ion-textarea type="text-area" 
                     class="form-control" 

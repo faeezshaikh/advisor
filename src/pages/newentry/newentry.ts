@@ -74,4 +74,15 @@ export class NewEntryPage {
   openDuties(){
     this.navCtrl.push(DutiesPage);
   }
+
+  public ionViewWillEnter() {
+    console.log('ionViewWillEnter');
+    
+    let duty = this.navParams.get('duty') || null;
+    if(duty!=null) {
+      this.dutyNo = duty.no;
+      console.log('ionViewWillEnter with duty',this.dutyNo);
+    }
+
+} 
 }
