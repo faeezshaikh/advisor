@@ -23,6 +23,7 @@ import { NewtimesheetPage } from '../pages/newtimesheet/newtimesheet';
 import { ReversePipe } from '../providers/helper/reversePipe';
 import { NewEntryPage } from '../pages/newentry/newentry';
 import { DutiesPage } from '../pages/duties/duties';
+import { LoginPage } from '../pages/login/login';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { DutiesPage } from '../pages/duties/duties';
     NewtimesheetPage,
     ReversePipe,
     NewEntryPage,
-    DutiesPage
+    DutiesPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ import { DutiesPage } from '../pages/duties/duties';
     EntriesPage,
     NewEntryPage,
     NewtimesheetPage,
-    DutiesPage
+    DutiesPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
