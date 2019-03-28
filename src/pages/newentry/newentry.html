@@ -1,4 +1,3 @@
-
 <ion-header>
   <ion-navbar color='primary'>
     <ion-title>Entry Details</ion-title>
@@ -7,97 +6,77 @@
 
 <ion-content padding>
 
- 
+
   <ion-card>
-      <ion-card-header>
-         <!-- <h2> Hospital: {{hospital}}</h2> -->
-         <ion-item>
-            <ion-icon name="medkit" item-start large></ion-icon>
-            <h2>Hospital:  {{hospital}}</h2>
-            <!-- <p>Month of:  {{timesheetDetails.monthOf}}</p> -->
-          </ion-item>
-      </ion-card-header>
-      <form #companyForm="ngForm">
+    <ion-card-header>
+      <ion-item class="mycolor">
+        <ion-icon name="medkit" item-start large></ion-icon>
+        <h2>Hospital: {{hospital}}</h2>
+      </ion-item>
+    </ion-card-header>
 
-          <!-- <ion-item class="mycolor">
-              <ion-label position="stacked">Hospital </ion-label>
-              <ion-label position="stacked">{{hospital}}</ion-label>
-            
-            </ion-item> -->
+    <form #companyForm="ngForm">
 
-          <ion-item class="mycolor">
-              <ion-label position="stacked">Date : </ion-label>
-              <ion-datetime   class="form-control"    name="entry-date" display-format="MM/YYYY" picker-format="MMMM YYYY" [(ngModel)]="entryDate" required></ion-datetime>
-            </ion-item>
+      <ion-item >
+        <ion-label position="stacked">Date : </ion-label>
+        <ion-datetime class="form-control" name="entry-date" display-format="MM/YYYY" picker-format="MMMM YYYY"
+          [(ngModel)]="entryDate" required></ion-datetime>
+      </ion-item>
 
-            <ion-item class="mycolor">
-                <ion-label position="stacked">Expended Time (hrs) :  </ion-label>
-
-                <ion-input type="number" 
-                class="form-control" 
-                name="expended-time"
-                ngModel
-                #nameField="ngModel"
-                [(ngModel)] = "expendedTime"
-                required></ion-input>
+      <ion-row>
+        <ion-col col-9>
+            <ion-item >
+                <ion-label position="stacked">Duty No : </ion-label>
+                <ion-input type="number" class="form-control" name="duty-no" ngModel #nameField="ngModel" [(ngModel)]="dutyNo"
+                  required></ion-input>
               </ion-item>
+        </ion-col>
 
-           
-              <ion-item>
-                  <button (click)="openDuties()" ion-button icon-start>
-                    <ion-icon name="search"></ion-icon>
-                    Lookup Duty
-                    </button>
-                    
-              </ion-item>
-              <ion-item class="mycolor">
+        <ion-col col-3>
+            <button (click)="openDuties()" ion-button icon-start>
+                <ion-icon name="search"></ion-icon>
 
+              </button>
+        </ion-col>
+      </ion-row>
 
-                          <ion-label position="stacked">Duty No : </ion-label>
-  
-                          <ion-input type="number" 
-                          class="form-control" 
-                          name="duty-no"
-                          ngModel
-                          #nameField="ngModel"
-                          [(ngModel)] = "dutyNo"
-                          required></ion-input>
-                        
+      <ion-item >
+        <ion-label position="stacked">Expended Time (hrs) : </ion-label>
+       
+        <ion-input type="number" class="form-control" name="expended-time" ngModel #nameField="ngModel"
+          [(ngModel)]="expendedTime" required></ion-input>
+      </ion-item>
 
 
 
+    
 
+      <ion-item >
+        <ion-label position="stacked">Activity : </ion-label>
+        <ion-textarea type="text-area" class="form-control" name="activities" ngModel #nameField="ngModel"
+          [(ngModel)]="activities" required minlength="8"></ion-textarea>
+      </ion-item>
+    </form>
 
-             
-                  
-                </ion-item>
+    <ion-row>
+      <ion-col>
+        <button ion-button full block color="danger" (click)="dismiss()">
+          <ion-icon name="close"></ion-icon>&nbsp;&nbsp;Cancel
+        </button>
 
+      </ion-col>
+      <ion-col>
+        <button *ngIf="!updateMode" ion-button full block color="primary" (click)="addEntry()"
+          [disabled]="!companyForm.valid">
+          <ion-icon name="checkmark-circle-outline"></ion-icon>&nbsp;&nbsp;Add
+        </button>
+        <button *ngIf="updateMode" ion-button full block color="primary" (click)="updateEntry()"
+          [disabled]="!companyForm.valid">
+          <ion-icon name="checkmark-circle-outline"></ion-icon>&nbsp;&nbsp;Save
+        </button>
 
-                <ion-item class="mycolor">
-                    <ion-label position="stacked">Activity : </ion-label>
-
-                    <ion-textarea type="text-area" 
-                    class="form-control" 
-                    name="activities"
-                    ngModel
-                    #nameField="ngModel"
-                    [(ngModel)] = "activities"
-                    required
-                    minlength="8"></ion-textarea>
-                  </ion-item>
-        </form>
-
-        <ion-row>
-            <ion-col>
-              <button  ion-button full block color="danger" (click)="dismiss()" ><ion-icon name="close"></ion-icon>&nbsp;&nbsp;Cancel</button>      
-  
-            </ion-col>
-            <ion-col>
-              <button *ngIf="!updateMode"  ion-button full block color="primary" (click)="addEntry()"  [disabled]="!companyForm.valid" ><ion-icon name="checkmark-circle-outline"></ion-icon>&nbsp;&nbsp;Add</button>
-              <button *ngIf="updateMode" ion-button full block color="primary" (click)="updateEntry()"  [disabled]="!companyForm.valid" ><ion-icon name="checkmark-circle-outline"></ion-icon>&nbsp;&nbsp;Save</button>
-  
-            </ion-col>
-        </ion-row>
+      </ion-col>
+    </ion-row>
   </ion-card>
 
 </ion-content>
