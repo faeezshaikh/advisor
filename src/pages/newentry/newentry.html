@@ -1,6 +1,7 @@
 <ion-header>
   <ion-navbar color='primary'>
-    <ion-title>Entry Details</ion-title>
+    <ion-title *ngIf="updateMode">Activity Details</ion-title>
+    <ion-title *ngIf="!updateMode">New Activity</ion-title>
   </ion-navbar>
 </ion-header>
 
