@@ -1,0 +1,21 @@
+
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Advisory Duties</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-searchbar placeholder="Search for duties"  [showCancelButton]="shouldShowCancel" (ionInput)="filterItems($event)" (ionCancel)="onCancel($event)">
+      </ion-searchbar>
+  <ion-card *ngFor="let duty of duties | async" >
+      <ion-card-header>
+          Duty No: {{duty.no}}
+        </ion-card-header>
+      <ion-card-content>
+        {{duty.text}}
+
+      </ion-card-content>
+  </ion-card>
+</ion-content>

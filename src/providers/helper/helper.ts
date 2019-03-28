@@ -16,6 +16,9 @@ export class HelperProvider {
     return this.db.collection('user1').valueChanges();
   }
 
+  getAdvisorDuties() {
+    return this.db.collection('duties').valueChanges();
+  }
   getTimesheetEntries(timesheetId) {
     return this.db.collection('user1').doc(timesheetId).collection('entries').valueChanges();
   }

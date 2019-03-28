@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams ,ViewController} from 'ionic-angular';
 import { HelperProvider } from '../../providers/helper/helper';
+import { DutiesPage } from '../duties/duties';
 
 
 @Component({
@@ -68,5 +69,9 @@ export class NewEntryPage {
       
       this.dismiss();
 
+  }
+
+  openDuties(){
+    this.navCtrl.push(DutiesPage);
   }
 }
