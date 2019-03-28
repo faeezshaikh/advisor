@@ -24,6 +24,7 @@ import { ReversePipe } from '../providers/helper/reversePipe';
 import { NewEntryPage } from '../pages/newentry/newentry';
 import { DutiesPage } from '../pages/duties/duties';
 import { LoginPage } from '../pages/login/login';
+import { AuthService } from '../providers/helper/authservice';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { LoginPage } from '../pages/login/login';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    HelperProvider
+    HelperProvider,
+    AuthService
   ]
 })
 export class AppModule {}
