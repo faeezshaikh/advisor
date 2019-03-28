@@ -30,6 +30,15 @@ export class HelperProvider {
     });
   }
 
+  deleteEntryTimesheet(timesheetId, entry) {
+
+    this.db.collection('user1').doc(timesheetId).collection('entries').doc(entry.id).delete().then(function () {
+      console.log("Document successfully deleted!");
+    }).catch(function (error) {
+      console.error("Error removing document: ", error);
+    });
+  }
+
   addTimesheet(userId, hospital, monthOf) {
     let that = this;
     this.db.collection(userId).add({
