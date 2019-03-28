@@ -115,9 +115,11 @@ export class HelperProvider {
 
 setLoggedInUserProfile(user) {
   console.log('User set to :' , user);
-  this.loggedInUser.email = user.email;
-  this.loggedInUser.name = user.name;
-  this.loggedInUser.photoURL = user.photoURL;
+  if(this.loggedInUser) {
+    this.loggedInUser.email = user.email;
+    this.loggedInUser.name = user.name;
+    this.loggedInUser.photoURL = user.photoURL;
+  }
   localStorage.setItem('user',JSON.stringify(user));
 }
 

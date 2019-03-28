@@ -93,6 +93,7 @@ export class MyApp {
     let user:any = this.helper.getLoggedInUserProfile();
     if(user == null || user == undefined) { // not logged in.
       this.loggedIn = false; //important to hide the sidemenu if session is expired.
+      this.loggedinUser = null;
       return true; // yes session is expired
     } else {
         this.loggedIn = true;
