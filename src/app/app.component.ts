@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
+import { HelperProvider } from '../providers/helper/helper';
 
 @Component({
   templateUrl: 'app.html'
@@ -14,10 +15,11 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = LoginPage;
+  loggedIn:boolean = false;
 
   pages: Array<{title: string, component: any,icon:string}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen ,   public events:Events) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen ,  private helper:HelperProvider, public events:Events) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -25,6 +27,17 @@ export class MyApp {
       { title: 'My Timesheets', component: ListPage, icon:'paper' },
       { title: 'Logout', component: HomePage, icon:'log-out' }
     ];
+
+    this.listenToLoginEvents();
+
+    if(this.checkLoginExpiry()){ // if session expired
+      this.rootPage = LoginPage;
+      this.loggedIn = false;
+    } else {
+      console.log('session exists so dont show again...');
+      this.rootPage = ListPage;
+      this.loggedIn = true;
+    }
 
   }
 
@@ -40,15 +53,51 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
+
+    if(page.title == 'Logout') {
+      this.logout();
+      return;
+    }
     this.nav.setRoot(page.component);
   }
 
   logout() {
     console.log("Publishing logout event");
     // localStorage.removeItem('r'); 
-    this.dataService.deleteFromStorage("email");
+    this.helper.deleteFromStorage("user");
     this.events.publish('user:logout');
   
   }
+
+  listenToLoginEvents() {
+    this.events.subscribe('user:login', (userId) => {
+      // console.log('Heard Login !!');
+      this.checkLoginExpiry();
+      this.loggedIn = true;
+      this.rootPage =  ListPage ;
+    });
+    
+
+
+    this.events.subscribe('user:logout', () => {
+      // console.log('Heard Logout !!');
+      this.loggedIn = false;
+      this.checkLoginExpiry();
+      this.rootPage =  LoginPage;
+    });
+  }
+
+  checkLoginExpiry(){
+
+    let user:any = this.helper.getLoggedInUserProfile();
+    if(user == null || user == undefined) { // not logged in.
+      this.loggedIn = false; //important to hide the sidemenu if session is expired.
+      return true; // yes session is expired
+    } else {
+        this.loggedIn = true;
+        return false; // session not expired
+    }
+  }
+
 
 }
