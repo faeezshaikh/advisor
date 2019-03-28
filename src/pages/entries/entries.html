@@ -12,6 +12,7 @@
         <ion-icon name="medkit" item-start large></ion-icon>
         <h2>Hospital:  {{timesheetDetails.hospital}}</h2>
         <p>Month of:  {{timesheetDetails.monthOf}}</p>
+
       </ion-item>
 
 
@@ -37,9 +38,11 @@
             <p> <ion-icon name="alarm"></ion-icon> &nbsp; Expended Time:  {{entry.expendedTime}} hrs.</p>
             <p> <ion-icon name="calendar"></ion-icon> &nbsp;  Date: {{entry.entryDate}}</p>
             <p> <ion-icon name="construct"></ion-icon> &nbsp;  Activity: {{entry.activities}}</p>
-            <button (click)="your_function_name()" ion-button clear item-end>
+            <!-- <button (click)="your_function_name()" ion-button clear item-end>
                 <ion-icon name="arrow-round-forward"></ion-icon>
-              </button>
+              </button> -->
+
+              <ion-icon name="arrow-forward" item-end></ion-icon>
           </ion-item>
 
 
