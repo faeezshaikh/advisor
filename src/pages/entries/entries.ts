@@ -3,6 +3,7 @@ import { NavController, NavParams,ModalController } from 'ionic-angular';
 import { NewEntryPage } from '../newentry/newentry';
 import { HelperProvider } from '../../providers/helper/helper';
 import { Observable } from 'rxjs';
+import { EntryDetailPage } from '../entry-detail/entry-detail';
 
 @Component({
   selector: 'page-entries',
@@ -31,5 +32,12 @@ export class EntriesPage {
     profileModal.present();
 }
   
+  itemTapped(e,entry){
+    console.log('Entry details:',entry);
+    this.navCtrl.push(EntryDetailPage,{entry:entry});
+    
+
+
+  }
 
 }
