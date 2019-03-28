@@ -1,16 +1,20 @@
 
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>Timesheet Entries</ion-title>
+    <ion-title>Timesheet</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-card>
-      <ion-item >
-    <h2><strong>Hospital: </strong>{{timesheetDetails.hospital}}</h2>
-    <h2><strong>Month of: </strong>{{timesheetDetails.monthOf}}</h2>
-  </ion-item>
+
+    <ion-item>
+        <ion-icon name="medkit" item-start large></ion-icon>
+        <h2>Hospital:  {{timesheetDetails.hospital}}</h2>
+        <p>Month of:  {{timesheetDetails.monthOf}}</p>
+      </ion-item>
+
+
   </ion-card>
 
 
@@ -29,10 +33,10 @@
 
         <ion-item   (click)="itemTapped($event, entry)" detail>
           
-            <h2> Expended Time:  {{entry.expendedTime}}</h2>
-            <p>  Date: {{entry.entryDate}}</p>
-            <p>Duty No: {{entry.dutyNo}}</p>
-            <p> Activity: {{entry.activities}}</p>
+          <h2><ion-icon name="clipboard"></ion-icon> &nbsp; Duty No: {{entry.dutyNo}}</h2>
+            <p> <ion-icon name="alarm"></ion-icon> &nbsp; Expended Time:  {{entry.expendedTime}} hrs.</p>
+            <p> <ion-icon name="calendar"></ion-icon> &nbsp;  Date: {{entry.entryDate}}</p>
+            <p> <ion-icon name="construct"></ion-icon> &nbsp;  Activity: {{entry.activities}}</p>
             <button (click)="your_function_name()" ion-button clear item-end>
                 <ion-icon name="arrow-round-forward"></ion-icon>
               </button>
