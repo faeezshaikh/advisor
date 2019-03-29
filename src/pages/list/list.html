@@ -54,9 +54,9 @@
               <ion-icon name="call"></ion-icon>
               Call
             </button> -->
-        <button ion-button color="secondary" (click)="presentAlertConfirm(item)">
-          <ion-icon name="mail"></ion-icon>
-          Email
+        <button ion-button color="secondary" (click)="preview(item)">
+          <ion-icon name="eye"></ion-icon>
+          Preview
         </button>
         <button ion-button color="primary" (click)="export(item,'#my-table')">
           <ion-icon name="cloud-download"></ion-icon>
@@ -73,82 +73,7 @@
 
   </ion-list>
 
-  <div id="exportStuff" >
-
-      <style>
-          table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-            word-wrap: break-word;
-            font-size:9px;
-          }
-          
-          td, th {
-        border: solid 1px #777;
-        padding: 5px;
-        text-align: left;
-    }
-     
-          /* tr:nth-child(even) {
-            background-color: #dddddd;
-          } */
-          </style>
-      <h2>HTML Table!</h2>
-
-      <table id="my-table" class="table pure-table" >
-        <!-- <tr>
-          <th>Date Activity Performed</th>
-          <th>Hospital at which Activity Performed</th>
-          <th style="background-color:#dddddd">Duty from List Above</th>
-          <th style="background-color:#dddddd">Time Expended (In Quarter Hrs)</th>
-          <th style="background-color:#dddddd; font-size:0.5rem;">Activities Performed Under this Duty (Brief Description of Activity is REQUIRED)</th>
-        </tr> -->
-        <tr>
-          <td>Alfreds Futterkiste</td>
-          <td>Maria Anders</td>
-          <td>Germany</td>
-          <td>Germany</td>
-          <td>Germany</td>
-        </tr>
-        <tr>
-          <td>Centro comercial Moctezuma</td>
-          <td>Francisco Chang</td>
-          <td>Mexico</td>
-          <td>Germany</td>
-          <td>Germany</td>
-        </tr>
-        <tr>
-          <td>Ernst Handel</td>
-          <td>Roland Mendel</td>
-          <td>Austria</td>
-          <td>Germany</td>
-          <td>Germany</td>
-        </tr>
-        <tr>
-          <td>Island Trading</td>
-          <td>Helen Bennett</td>
-          <td>UK</td>
-          <td>Germany</td>
-          <td>Germany</td>
-        </tr>
-        <tr>
-          <td>Laughing Bacchus Winecellars,Laughing Bacchus Winecellars,Laughing Bacchus Winecellars,Laughing Bacchus Winecellars</td>
-          <td>Yoshi Tannamuri</td>
-          <td>Canada</td>
-          <td>Germany</td>
-          <td>Germany</td>
-        </tr>
-        <tr>
-          <td>Magazzini Alimentari Riuniti</td>
-          <td>Giovanni Rovelli</td>
-          <td>Italy</td>
-          <td>Germany</td>
-          <td>Germany</td>
-        </tr>
-      </table>
-
-  </div>
+ 
 
   <ion-fab bottom right>
     <button id="createButton" ion-fab color="primary" (click)="openTimesheetModal()">

@@ -3,6 +3,7 @@ import { NavController, NavParams,ModalController ,AlertController} from 'ionic-
 import { NewEntryPage } from '../newentry/newentry';
 import { HelperProvider } from '../../providers/helper/helper';
 import { Observable } from 'rxjs';
+import { flattenStyles } from '@angular/platform-browser/src/dom/dom_renderer';
 
 
 @Component({
@@ -12,10 +13,12 @@ import { Observable } from 'rxjs';
 export class EntriesPage {
   timesheetDetails:any;
   entries: Observable<any[]>;
+  previewMode:boolean=false;
 
   constructor(public navCtrl: NavController, 
     private helper: HelperProvider, public navParams: NavParams,private modalCtrl:ModalController,private alertController: AlertController) {
-    this.timesheetDetails = navParams.get('item');
+    this.timesheetDetails = navParams.get('timesheet');
+    this.previewMode = navParams.get('previewMode');
     console.log('Timesheet object:', this.timesheetDetails);
     
     this.entries = this.helper.getTimesheetEntries(this.timesheetDetails.id);
@@ -38,6 +41,9 @@ export class EntriesPage {
     this.navCtrl.push(NewEntryPage,{entry:entry});
   }
 
+  cancel(){
+    this.navCtrl.pop();
+  }
   deleteItem(entry){
     this.helper.deleteEntryTimesheet(this.timesheetDetails.id ,entry);
   }

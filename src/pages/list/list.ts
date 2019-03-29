@@ -6,6 +6,7 @@ import { EntriesPage } from '../entries/entries';
 import { NewtimesheetPage } from '../newtimesheet/newtimesheet';
 
 
+
 @Component({
   selector: 'page-list',
   templateUrl: 'list.html'
@@ -28,7 +29,8 @@ export class ListPage {
     console.log('Tapped:',item);
     
     this.navCtrl.push(EntriesPage, {
-      item: item
+      timesheet: item,
+      previewMode:false
     });
   }
 
@@ -135,6 +137,13 @@ export class ListPage {
     });
 
     await alert.present();
+  }
+
+  preview(timesheet){
+    this.navCtrl.push(EntriesPage, {
+      timesheet: timesheet,
+      previewMode:true
+    });
   }
 
 }
