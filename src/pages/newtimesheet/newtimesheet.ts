@@ -23,7 +23,7 @@ export class NewtimesheetPage {
      console.log('Month of:',this.monthOf);
     
     
-    this.helper.addTimesheet("user1",this.hospital,this.monthOf);
+    this.helper.addTimesheet(this.helper.getLoggedInUserProfile().email,this.hospital,this.monthOf);
     this.dismiss();
   }
 

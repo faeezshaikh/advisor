@@ -7,28 +7,36 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class HelperProvider {
   items: Observable<any[]>;
-  collection_endpoint = 'user1';
+  collection_endpoint;
   loggedInUser:any= {};
   constructor(public http: HttpClient, public db: AngularFirestore) {
     console.log('Hello HelperProvider Provider');
+ 
+    this.setCollectionEndpoint();
 
   }
 
+  setCollectionEndpoint(){
+    if(this.getLoggedInUserProfile()!=null) {
+      this.collection_endpoint = this.getLoggedInUserProfile().email;
+      console.log('Collection endpoint:' , this.collection_endpoint);
+    }
+  }
   getItems() {
-    return this.db.collection('user1').valueChanges();
+    return this.db.collection(this.collection_endpoint).valueChanges();
   }
 
   getAdvisorDuties() {
     return this.db.collection('duties').valueChanges();
   }
   getTimesheetEntries(timesheetId) {
-    return this.db.collection('user1').doc(timesheetId).collection('entries').valueChanges();
+    return this.db.collection(this.collection_endpoint).doc(timesheetId).collection('entries').valueChanges();
   }
 
   deleteTimesheet(timesheet) {
     console.log('Timesheet details:', timesheet);
 
-    this.db.collection('user1').doc(timesheet.id).delete().then(function () {
+    this.db.collection(this.collection_endpoint).doc(timesheet.id).delete().then(function () {
       console.log("Document successfully deleted!");
     }).catch(function (error) {
       console.error("Error removing document: ", error);
@@ -37,7 +45,7 @@ export class HelperProvider {
 
   deleteEntryTimesheet(timesheetId, entry) {
 
-    this.db.collection('user1').doc(timesheetId).collection('entries').doc(entry.id).delete().then(function () {
+    this.db.collection(this.collection_endpoint).doc(timesheetId).collection('entries').doc(entry.id).delete().then(function () {
       console.log("Document successfully deleted!");
     }).catch(function (error) {
       console.error("Error removing document: ", error);
@@ -68,7 +76,7 @@ export class HelperProvider {
   updateEntryInTimesheet(entryId, timesheetId, hospital, expendedTime,
     entryDate, dutyNo, activities) {
 
-    this.db.collection('user1').doc(timesheetId).collection('entries').doc(entryId).
+    this.db.collection(this.collection_endpoint).doc(timesheetId).collection('entries').doc(entryId).
       update({
         hospital: hospital,
         expendedTime: expendedTime,
@@ -88,7 +96,7 @@ export class HelperProvider {
   addEntryToTimesheet(timesheetId, hospital, expendedTime,
     entryDate, dutyNo, activities) {
     let that = this;
-    this.db.collection('user1').doc(timesheetId).collection('entries').
+    this.db.collection(this.collection_endpoint).doc(timesheetId).collection('entries').
       add({
         hospital: hospital,
         expendedTime: expendedTime,

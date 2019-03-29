@@ -75,6 +75,7 @@ export class MyApp {
       // console.log('Heard Login !!');
       this.checkLoginExpiry();
       this.loggedIn = true;
+      this.helper.setCollectionEndpoint();
       this.rootPage =  ListPage ;
     });
     

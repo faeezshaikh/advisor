@@ -23,7 +23,7 @@ export class LoginPage {
     this.authService.doTwitterLogin()
     .then(res => {
       console.log('Success with Twitter',res);
-      this.helper.setLoggedInUserProfile({'email': res.user.email, 'name':res.user.displayName,'photoURL':res.user.photoURL});
+      this.helper.setLoggedInUserProfile({'email': res.additionalUserInfo.username, 'name':res.user.displayName,'photoURL':res.user.photoURL});
       this.eventsService.sendLoggedInEvent();
       this.navCtrl.setRoot(ListPage);
 
