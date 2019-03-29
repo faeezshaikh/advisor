@@ -28,6 +28,7 @@ import { AuthService } from '../providers/helper/authservice';
 import { EventsService } from '../providers/helper/eventsService';
 
 
+
 @NgModule({
   declarations: [
     MyApp,

@@ -5,6 +5,7 @@ import { HelperProvider } from '../../providers/helper/helper';
 import { EntriesPage } from '../entries/entries';
 import { NewtimesheetPage } from '../newtimesheet/newtimesheet';
 
+
 @Component({
   selector: 'page-list',
   templateUrl: 'list.html'
@@ -15,7 +16,8 @@ export class ListPage {
   items: Observable<any[]>;
   // items: Array<{title: string, note: string, icon: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public helper:HelperProvider,private modalCtrl:ModalController,public alertController: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public helper:HelperProvider,
+     private modalCtrl:ModalController,public alertController: AlertController) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
     this.items = this.helper.getItems();
@@ -37,6 +39,11 @@ export class ListPage {
   openTimesheetModal() {
       let profileModal = this.modalCtrl.create(NewtimesheetPage, { userId: 8675309 });
       profileModal.present();
+  }
+
+  export(elementId){
+    this.helper.export(elementId);
+    // this.helper.generatePdf(elementId);
   }
 
 
