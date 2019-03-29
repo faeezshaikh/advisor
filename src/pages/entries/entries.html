@@ -25,13 +25,29 @@
           <ion-label>Activities</ion-label>
         </ion-list-header>
 
+        <ion-grid *ngIf="(entries | async)?.length==0">
+            <ion-row>&nbsp;</ion-row>
+            <ion-row>&nbsp;</ion-row>
+            <ion-row>&nbsp;</ion-row>
+            <ion-row>&nbsp;</ion-row>
+            <ion-row>&nbsp;</ion-row>
+            <ion-row>&nbsp;</ion-row>
+            <ion-row>
+              <ion-col col-2>&nbsp;</ion-col>
+              <ion-col col-8>
+                <ion-label style="    color: #e2dcdc;
+                font-size: 2.0rem;
+                text-align: center;" text-wrap>
+                    Tap the + sign to add a new Activity
+                  </ion-label>
+              </ion-col>
+              <ion-col col-2>&nbsp;</ion-col>
+              
+            </ion-row>
+        
+          </ion-grid>
+
       <ion-item-sliding  *ngFor="let entry of entries | async | reverse">
-
-      
-
-      
-
-
         <ion-item   (click)="itemTapped($event, entry)" detail>
           
           <h2><ion-icon name="clipboard"></ion-icon> &nbsp; Duty No: {{entry.dutyNo}}</h2>
