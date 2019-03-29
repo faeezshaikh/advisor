@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import * as jsPDF from 'jspdf';
-import * as html2canvas from 'html2canvas';
-import { File } from '@ionic-native/file';
+
 
 
 @Injectable()
@@ -148,50 +147,17 @@ getLoggedInUserProfile() {
 }
 
 
-generatePdf(elementId){
-  const div = document.getElementById(elementId);
-  const options = {background:"white",height :div.clientHeight , width : div.clientWidth  };
-  html2canvas(div,options).then((canvas)=>{
-    //Initialize JSPDF
-    var doc = new jsPDF("p","mm","a4");
-    //Converting canvas to Image
-    let imgData = canvas.toDataURL("image/PNG");
-    //Add image Canvas to PDF
-    doc.addImage(imgData, 'PNG', 20,20 );
-    
-    let pdfOutput = doc.output();
-    // using ArrayBuffer will allow you to put image inside PDF
-    let buffer = new ArrayBuffer(pdfOutput.length);
-    let array = new Uint8Array(buffer);
-    for (var i = 0; i < pdfOutput.length; i++) {
-        array[i] = pdfOutput.charCodeAt(i);
-    }
-
-
-    //This is where the PDF file will stored , you can change it as you like
-    // for more information please visit https://ionicframework.com/docs/native/file/
-    // const directory = this.file.externalApplicationStorageDirectory ;
-
-    //Name of pdf
-    const fileName = "example.pdf";
-    
-    //Writing File to Device
-    // this.file.writeFile(directory,fileName,buffer)
-    // .then((success)=> console.log("File created Succesfully" + JSON.stringify(success)))
-    // .catch((error)=> console.log("Cannot Create File " +JSON.stringify(error)));
-
-    doc.save(fileName);
-
-
-  });
-}
-
-export(elementId) {
+export(filename,elementId) {
   console.log('Exporting..');
 
-  let doc = new jsPDF();
+  let doc = new jsPDF('landscape');
+  // doc.setFont("arial", "bold");
+  // doc.setFontSize(4);
+  doc.setFont("helvetica");
+  doc.setFontType("bold");
+  doc.setFontSize(9);
 
-  let name =  'timepass.pdf';
+  // let name =  'timepass.pdf';
 
   let specialElementHandlers = {
     '#editor': function (element, renderer) {
@@ -209,13 +175,14 @@ export(elementId) {
   // img.crossOrigin = "Anonymous";
   // doc.addImage(this.getBase64Image(img), 'PNG', 15, 40, 200, 114);
 
-  doc.fromHTML(content.innerHTML, 20, 20, {
-    'width': 140, // max width of content on PDF
+  doc.fromHTML(content.innerHTML, 0, 0, {
+    'width' : 522, // max width of content on PDF
     'elementHandlers': specialElementHandlers
   },
     function (bla) {
-      console.log('File name:', name);
-      doc.save(name);
+      console.log('File name:', filename);
+
+      doc.save(filename);
     });
 }
 }

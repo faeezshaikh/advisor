@@ -41,8 +41,8 @@ export class ListPage {
       profileModal.present();
   }
 
-  export(elementId){
-    this.helper.export(elementId);
+  export(filename,elementId){
+    this.helper.export(filename,elementId);
     // this.helper.generatePdf(elementId);
   }
 
