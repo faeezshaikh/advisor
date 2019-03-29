@@ -13,6 +13,7 @@ import { flattenStyles } from '@angular/platform-browser/src/dom/dom_renderer';
 export class EntriesPage {
   timesheetDetails:any;
   entries: Observable<any[]>;
+  entriesClone: Observable<any[]>;
   previewMode:boolean=false;
 
   constructor(public navCtrl: NavController, 
@@ -22,6 +23,7 @@ export class EntriesPage {
     console.log('Timesheet object:', this.timesheetDetails);
     
     this.entries = this.helper.getTimesheetEntries(this.timesheetDetails.id);
+    this.entriesClone = this.helper.getTimesheetEntries2(this.timesheetDetails.id);
 
     
   }

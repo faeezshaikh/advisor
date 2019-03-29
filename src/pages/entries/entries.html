@@ -18,7 +18,7 @@
 
   </ion-card>
 
-  <div id="exportStuff" *ngIf="previewMode" >
+  <div  *ngIf="previewMode &&  (entriesClone | async)?.length>0" >
 
       <style>
           table {
@@ -35,72 +35,60 @@
         text-align: left;
     }
      
-          /* tr:nth-child(even) {
-            background-color: #dddddd;
-          } */
+           /* tr:nth-child(even) {
+            background-color: #f0f0f0;
+          }  */
           </style>
-      <h2>HTML Table!</h2>
 
-      <table id="my-table" class="table pure-table" >
+
+      <table id="my-table" class="table pure-table" style="table-layout: fixed; width: 100%" >
         <tr>
-          <th style="background-color:#dddddd">Date Activity Performed</th>
-          <th style="background-color:#dddddd">Hospital at which Activity Performed</th>
-          <th style="background-color:#dddddd">Duty from List Above</th>
-          <th style="background-color:#dddddd">Time Expended (In Quarter Hrs)</th>
-          <th style="background-color:#dddddd; font-size:0.5rem;">Activities Performed Under this Duty (Brief Description of Activity is REQUIRED)</th>
+          <th style="background-color:#488aff; color:white"><strong>Date Activity Performed</strong></th>
+          <th style="background-color:#488aff; color:white"><strong>Hospital at which Activity Performed</strong></th>
+          <th style="background-color:#488aff; color:white"><strong>Duty from List Above</strong></th>
+          <th style="background-color:#488aff; color:white"><strong>Time Expended (In Quarter Hrs)</strong></th>
+          <th style="background-color:#488aff; color:white"><strong>Activities Performed Under this Duty (Brief Description of Activity is REQUIRED)</strong></th>
         </tr> 
-        <tr>
-          <td>Alfreds Futterkiste</td>
+        <tr *ngFor="let entry of entries | async ">
+          <td>{{entry.entryDate}}</td>
           <td>Maria Anders</td>
-          <td>Germany</td>
-          <td>Germany</td>
-          <td>Germany</td>
+          <td>{{entry.dutyNo}}</td>
+          <td>{{entry.expendedTime}}</td>
+          <td style="word-wrap: break-word">{{entry.activities}}</td>
         </tr>
-        <tr>
-          <td>Centro comercial Moctezuma</td>
-          <td>Francisco Chang</td>
-          <td>Mexico</td>
-          <td>Germany</td>
-          <td>Germany</td>
-        </tr>
-        <tr>
-          <td>Ernst Handel</td>
-          <td>Roland Mendel</td>
-          <td>Austria</td>
-          <td>Germany</td>
-          <td>Germany</td>
-        </tr>
-        <tr>
-          <td>Island Trading</td>
-          <td>Helen Bennett</td>
-          <td>UK</td>
-          <td>Germany</td>
-          <td>Germany</td>
-        </tr>
-        <tr>
-          <td>Laughing Bacchus Winecellars,Laughing Bacchus Winecellars,Laughing Bacchus Winecellars,Laughing Bacchus Winecellars</td>
-          <td>Yoshi Tannamuri</td>
-          <td>Canada</td>
-          <td>Germany</td>
-          <td>Germany</td>
-        </tr>
-        <tr>
-          <td>Magazzini Alimentari Riuniti</td>
-          <td>Giovanni Rovelli</td>
-          <td>Italy</td>
-          <td>Germany</td>
-          <td>Germany</td>
-        </tr>
+       
       </table>
 
       <ion-item>
           <ion-row>
               <ion-col><button ion-button block><ion-icon name="cloud-download"></ion-icon>&nbsp;Export</button></ion-col>
-              <ion-col> <button ion-button block outline   (click)='cancel()'>Cancel</button></ion-col>
+              <ion-col> <button ion-button block outline   (click)='cancel()'>Back</button></ion-col>
           </ion-row>
       </ion-item>
 
   </div>
+
+  <ion-grid *ngIf="previewMode && (entries | async)?.length==0">
+      <ion-row>&nbsp;</ion-row>
+      <ion-row>&nbsp;</ion-row>
+      <ion-row>&nbsp;</ion-row>
+      <ion-row>&nbsp;</ion-row>
+      <ion-row>&nbsp;</ion-row>
+      <ion-row>&nbsp;</ion-row>
+      <ion-row>
+        <ion-col col-2>&nbsp;</ion-col>
+        <ion-col col-8>
+          <ion-label style="    color: #e2dcdc;
+          font-size: 2.0rem;
+          text-align: center;" text-wrap>
+            Noting to export. There are no activities in the timesheet yet.
+            </ion-label>
+        </ion-col>
+        <ion-col col-2>&nbsp;</ion-col>
+        
+      </ion-row>
+  
+    </ion-grid>
 
   <ion-list *ngIf="!previewMode">
   
@@ -169,7 +157,7 @@
 
   </ion-list>
 
-  <ion-fab bottom right>
+  <ion-fab bottom right *ngIf="!previewMode">
       <button id="createButton" ion-fab color="primary" (click)="openEntryModal()">
         <ion-icon name="add"></ion-icon>
       </button>

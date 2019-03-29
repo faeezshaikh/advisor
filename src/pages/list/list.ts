@@ -56,12 +56,10 @@ export class ListPage {
 
     let that = this;
     console.log('This.items..');
-    this.helper.getItems2().subscribe((timesheet:any[]) => {
-      console.log('Received Timesheet',timesheet);
-      console.log('printing id..',timesheet[0].payload.doc.id);
+   
       
       
-      that.helper.getTimesheetEntries2(timesheet[0].payload.doc.id).subscribe(entries => {
+      that.helper.getTimesheetEntries2(timesheet.id).subscribe(entries => {
         console.log('Received timesheet entries:',entries);
         entries.map(a =>  {
           console.log("Entries paylod:", a.payload.doc);
@@ -82,7 +80,7 @@ export class ListPage {
         
         that.helper.export(that.getCols(),arr,filename,that.timesheetPdfTitle);
       })
-    });
+
     console.log('Pringint enf..');
     
 
