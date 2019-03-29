@@ -33,7 +33,7 @@ export class EntriesPage {
   }
 
   export(){
-    console.log('Exporting...');
+    console.log('Exporting...',this.timesheetDetails);
 
     this.helper.export(this.timesheetDetails);
   }
