@@ -8,29 +8,30 @@
 </ion-header>
 
 <ion-content>
+
+  <!-- Refer this page
+    https://stackoverflow.com/questions/38057537/how-to-check-the-length-of-an-observable-array -->
+  <ion-grid *ngIf="(items | async)?.length==0">
+    <ion-row>&nbsp;</ion-row>
+    <ion-row>Tap the + sign to add a new Timesheet</ion-row>
+    <ion-row>&nbsp;</ion-row>
+
+  </ion-grid>
   <ion-list>
-  
+    <ion-item-sliding *ngFor="let item of items | async | reverse">
+      {{item.hospital}}
+
+      <ion-item (click)="itemTapped($event, item)">
+        <ion-icon name="medkit" item-start></ion-icon>
+        Hospital: {{item.hospital}}
+        <p> Month of: {{item.monthOf}}</p>
+
+        <ion-icon name="arrow-forward" item-end></ion-icon>
+      </ion-item>
 
 
-      <ion-item-sliding  *ngFor="let item of items | async | reverse">
-
-        {{item.hospital}}
-
-      
-
-
-
-          <ion-item (click)="itemTapped($event, item)" >
-              <ion-icon name="medkit" item-start></ion-icon>
-              Hospital:  {{item.hospital}}
-              <p>  Month of: {{item.monthOf}}</p>
-
-              <ion-icon name="arrow-forward" item-end></ion-icon>
-            </ion-item>
-
-
-        <ion-item-options side="left">
-            <!-- <button ion-button color="primary" (click)="tbd()">
+      <ion-item-options side="left">
+        <!-- <button ion-button color="primary" (click)="tbd()">
               <ion-icon name="text"></ion-icon>
               Text
             </button>
@@ -38,21 +39,21 @@
               <ion-icon name="call"></ion-icon>
               Call
             </button> -->
-            <button ion-button color="secondary"  (click)="presentAlertConfirm(item)">
-                <ion-icon name="mail"></ion-icon>
-                Email
-              </button>
-              <button ion-button color="primary"  (click)="presentAlertConfirm(item)">
-                  <ion-icon name="cloud-download"></ion-icon>
-                  Download
-                </button>
-          </ion-item-options>
-          <ion-item-options side="right">
-            <button ion-button color="danger"  (click)="presentAlertConfirm(item)">
-              <ion-icon name="trash"></ion-icon>
-              Delete
-            </button>
-          </ion-item-options>
+        <button ion-button color="secondary" (click)="presentAlertConfirm(item)">
+          <ion-icon name="mail"></ion-icon>
+          Email
+        </button>
+        <button ion-button color="primary" (click)="presentAlertConfirm(item)">
+          <ion-icon name="cloud-download"></ion-icon>
+          Download
+        </button>
+      </ion-item-options>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="presentAlertConfirm(item)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
     </ion-item-sliding>
 
   </ion-list>
