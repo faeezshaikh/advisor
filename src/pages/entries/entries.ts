@@ -32,6 +32,11 @@ export class EntriesPage {
     console.log('ionViewDidLoad EntriesPage');
   }
 
+  export(){
+    console.log('Exporting...');
+
+    this.helper.export(this.timesheetDetails);
+  }
   openEntryModal() {
     let profileModal = this.modalCtrl.create(NewEntryPage, { hospital: this.timesheetDetails.hospital, timesheetId: this.timesheetDetails.id });
     profileModal.present();

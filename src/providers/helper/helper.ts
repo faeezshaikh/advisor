@@ -14,6 +14,7 @@ import 'jspdf-autotable';
 export class HelperProvider {
   items: Observable<any[]>;
   collection_endpoint;
+  timesheetPdfTitle:string;
   loggedInUser:any= {};
   constructor(public http: HttpClient, public db: AngularFirestore) {
     console.log('Hello HelperProvider Provider');
@@ -158,7 +159,76 @@ getLoggedInUserProfile() {
 }
 
 
-export(columns,rows,filename,timesheetTile){
+export(timesheet){
+  console.log('Exporting...',timesheet);
+  this.getRows(timesheet);
+  this.timesheetPdfTitle = timesheet.hospital + " " + timesheet.monthOf;
+}
+
+getRows(timesheet){
+  let filename = timesheet.hospital+'_'+timesheet.monthOf+'.pdf';
+  let arr =  [];
+
+  let that = this;
+  console.log('This.items..');
+ 
+    
+    
+    this.getTimesheetEntries2(timesheet.id).subscribe(entries => {
+      console.log('Received timesheet entries:',entries);
+      entries.map(a =>  {
+        console.log("Entries paylod:", a.payload.doc);
+        if(a.payload.doc.exists) {
+            console.log('Doc data:',a.payload.doc.data());
+            let obj = {
+              "date": a.payload.doc.data().entryDate,
+              "hospital":a.payload.doc.data().hospital,
+              "dutyNo":a.payload.doc.data().dutyNo,
+              "expendedTime":a.payload.doc.data().expendedTime,
+              "activity":a.payload.doc.data().activities
+            }
+            
+            arr.push(obj);
+            
+        }
+      })
+      
+      that.exportActual(that.getCols(),arr,filename,that.timesheetPdfTitle);
+    })
+
+  console.log('Pringint enf..');
+  
+
+}
+getCols(){
+ 
+  return  [{
+    title: "Date Activity Performed",
+    dataKey: "date"
+},
+{
+    title: "Hospital at which Activity Performed",
+    dataKey: "hospital"
+},
+{
+    title: "Duty from List Above",
+    dataKey: "dutyNo"
+},
+
+{
+    title: "Time Expended (In Quarter Hrs)",
+    dataKey: "expendedTime"
+},
+
+{
+    title: "Activities Performed Under this Duty (Brief Description of Activity is REQUIRED)",
+    dataKey: "activity"
+}
+];
+}
+
+
+exportActual(columns,rows,filename,timesheetTile){
   console.log('Inside export, rows:',rows);
   console.log('Inside export, cols:',columns);
   console.log('Timesheet obj:',timesheetTile);
@@ -174,13 +244,6 @@ export(columns,rows,filename,timesheetTile){
     doc.setFontStyle('normal');
     doc.text(timesheetTile, data.settings.margin.left, 50);
   };
-
-  // var footer = function (data) {
-  //   doc.setFontSize(8);
-  //   doc.setTextColor(40);
-  //   doc.setFontStyle('normal');
-  //   doc.text(timesheetTile, data.settings.margin.bottom, 50);
-  // };
 
  
   
