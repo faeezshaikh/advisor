@@ -58,7 +58,7 @@
           <ion-icon name="mail"></ion-icon>
           Email
         </button>
-        <button ion-button color="primary" (click)="export(item.hospital+'_'+item.monthOf+'.pdf','exportStuff')">
+        <button ion-button color="primary" (click)="export(item,'#my-table')">
           <ion-icon name="cloud-download"></ion-icon>
           Download
         </button>
@@ -85,28 +85,25 @@
           }
           
           td, th {
-            border: 1px solid rgb(168, 163, 163);
-            text-align: left;
-            /* padding: 8px; */
-
-            word-wrap: break-word
-            
-          }
+        border: solid 1px #777;
+        padding: 5px;
+        text-align: left;
+    }
      
           /* tr:nth-child(even) {
             background-color: #dddddd;
           } */
           </style>
-      <h2>HTML Table</h2>
+      <h2>HTML Table!</h2>
 
-      <table>
-        <tr>
-          <td style="background-color:#dddddd">Date Activity Performed</td>
-          <td style="background-color:#dddddd">Hospital at which Activity Performed</td>
-          <td style="background-color:#dddddd">Duty from List Above</td>
-          <td style="background-color:#dddddd">Time Expended (In Quarter Hrs)</td>
-          <td style="background-color:#dddddd; font-size:0.5rem;">Activities Performed Under this Duty (Brief Description of Activity is REQUIRED)</td>
-        </tr>
+      <table id="my-table" class="table pure-table" >
+        <!-- <tr>
+          <th>Date Activity Performed</th>
+          <th>Hospital at which Activity Performed</th>
+          <th style="background-color:#dddddd">Duty from List Above</th>
+          <th style="background-color:#dddddd">Time Expended (In Quarter Hrs)</th>
+          <th style="background-color:#dddddd; font-size:0.5rem;">Activities Performed Under this Duty (Brief Description of Activity is REQUIRED)</th>
+        </tr> -->
         <tr>
           <td>Alfreds Futterkiste</td>
           <td>Maria Anders</td>

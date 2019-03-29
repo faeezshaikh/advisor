@@ -12,6 +12,7 @@ import { NewtimesheetPage } from '../newtimesheet/newtimesheet';
 })
 export class ListPage {
   selectedItem: any;
+  timesheetPdfTitle:string;
   // icons: string[];
   items: Observable<any[]>;
   // items: Array<{title: string, note: string, icon: string}>;
@@ -41,11 +42,75 @@ export class ListPage {
       profileModal.present();
   }
 
-  export(filename,elementId){
-    this.helper.export(filename,elementId);
-    // this.helper.generatePdf(elementId);
+  export(timesheet,elementId){
+    console.log('Exporting...',timesheet);
+    this.getRows(timesheet);
+    this.timesheetPdfTitle = timesheet.hospital + " " + timesheet.monthOf;
   }
 
+  getRows(timesheet){
+    let filename = timesheet.hospital+'_'+timesheet.monthOf+'.pdf';
+    let arr =  [];
+
+    let that = this;
+    console.log('This.items..');
+    this.helper.getItems2().subscribe((timesheet:any[]) => {
+      console.log('Received Timesheet',timesheet);
+      console.log('printing id..',timesheet[0].payload.doc.id);
+      
+      
+      that.helper.getTimesheetEntries2(timesheet[0].payload.doc.id).subscribe(entries => {
+        console.log('Received timesheet entries:',entries);
+        entries.map(a =>  {
+          console.log("Entries paylod:", a.payload.doc);
+          if(a.payload.doc.exists) {
+              console.log('Doc data:',a.payload.doc.data());
+              let obj = {
+                "date": a.payload.doc.data().entryDate,
+                "hospital":a.payload.doc.data().hospital,
+                "dutyNo":a.payload.doc.data().dutyNo,
+                "expendedTime":a.payload.doc.data().expendedTime,
+                "activity":a.payload.doc.data().activities
+              }
+              
+              arr.push(obj);
+              
+          }
+        })
+        
+        that.helper.export(that.getCols(),arr,filename,that.timesheetPdfTitle);
+      })
+    });
+    console.log('Pringint enf..');
+    
+
+  }
+  getCols(){
+   
+    return  [{
+      title: "Date Activity Performed",
+      dataKey: "date"
+  },
+  {
+      title: "Hospital at which Activity Performed",
+      dataKey: "hospital"
+  },
+  {
+      title: "Duty from List Above",
+      dataKey: "dutyNo"
+  },
+  
+  {
+      title: "Time Expended (In Quarter Hrs)",
+      dataKey: "expendedTime"
+  },
+  
+  {
+      title: "Activities Performed Under this Duty (Brief Description of Activity is REQUIRED)",
+      dataKey: "activity"
+  }
+];
+  }
 
   async presentAlertConfirm(item) {
     const alert = await this.alertController.create({

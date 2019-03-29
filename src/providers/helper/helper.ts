@@ -2,7 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import * as jsPDF from 'jspdf';
+// import * as jsPDF from 'jspdf';
+
+
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 
 
@@ -28,6 +32,10 @@ export class HelperProvider {
     return this.db.collection(this.collection_endpoint).valueChanges();
   }
 
+  getItems2() {
+    return this.db.collection(this.collection_endpoint).snapshotChanges();
+  }
+
   getAdvisorDuties() {
     return this.db.collection('duties').valueChanges();
   }
@@ -35,6 +43,9 @@ export class HelperProvider {
     return this.db.collection(this.collection_endpoint).doc(timesheetId).collection('entries').valueChanges();
   }
 
+  getTimesheetEntries2(timesheetId) {
+    return this.db.collection(this.collection_endpoint).doc(timesheetId).collection('entries').snapshotChanges();
+  }
   deleteTimesheet(timesheet) {
     console.log('Timesheet details:', timesheet);
 
@@ -147,42 +158,54 @@ getLoggedInUserProfile() {
 }
 
 
-export(filename,elementId) {
-  console.log('Exporting..');
+export(columns,rows,filename,timesheetTile){
+  console.log('Inside export, rows:',rows);
+  console.log('Inside export, cols:',columns);
+  console.log('Timesheet obj:',timesheetTile);
+  
+  
 
-  let doc = new jsPDF('landscape');
-  // doc.setFont("arial", "bold");
-  // doc.setFontSize(4);
-  doc.setFont("helvetica");
-  doc.setFontType("bold");
-  doc.setFontSize(9);
-
-  // let name =  'timepass.pdf';
-
-  let specialElementHandlers = {
-    '#editor': function (element, renderer) {
-      return true;
-    }
+  
+  var doc = new jsPDF('p', 'pt');
+  
+  var header = function (data) {
+    doc.setFontSize(18);
+    doc.setTextColor(40);
+    doc.setFontStyle('normal');
+    doc.text(timesheetTile, data.settings.margin.left, 50);
   };
 
-  // let content = this.content.nativeElement;
-  const content = document.getElementById(elementId);
-  console.log('Content:', content);
+  // var footer = function (data) {
+  //   doc.setFontSize(8);
+  //   doc.setTextColor(40);
+  //   doc.setFontStyle('normal');
+  //   doc.text(timesheetTile, data.settings.margin.bottom, 50);
+  // };
+
+ 
+  
+  doc.autoTable(columns, rows, 
+            {margin: {top: 80},
+             didDrawPage: header,
+             theme:'striped',
+             bodyStyles: {valign: 'top'},
+             styles: {cellWidth: 20,minCellHeight:30},
+           
+            //  styles: {overflow: 'linebreak'},
+            //  columnStyles: {
+            //   0: {columnWidth: 20},
+            //   1: {columnWidth: 10},
+            //   2: {columnWidth: 10},
+            //   3: {columnWidth: 20},
+            //   4: {columnWidth: 50},
+            // }
+           
+            });
+  
+  doc.save(filename);
 
 
-  // let img = new Image();
-  // img.src = this.project.diagram;
-  // img.crossOrigin = "Anonymous";
-  // doc.addImage(this.getBase64Image(img), 'PNG', 15, 40, 200, 114);
 
-  doc.fromHTML(content.innerHTML, 0, 0, {
-    'width' : 522, // max width of content on PDF
-    'elementHandlers': specialElementHandlers
-  },
-    function (bla) {
-      console.log('File name:', filename);
-
-      doc.save(filename);
-    });
 }
+
 }
