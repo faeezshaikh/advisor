@@ -13,6 +13,7 @@
         <h2>Hospital:  {{timesheetDetails.hospital}}</h2>
         <p>Month of:  {{timesheetDetails.monthOf}}</p>
 
+        <ion-icon name="create" item-end (click)="updateTimesheet()"></ion-icon>
       </ion-item>
 
 
@@ -51,7 +52,7 @@
         </tr> 
         <tr *ngFor="let entry of entries | async ">
           <td>{{entry.entryDate}}</td>
-          <td>Maria Anders</td>
+          <td>{{entry.hospital}}</td>
           <td>{{entry.dutyNo}}</td>
           <td>{{entry.expendedTime}}</td>
           <td style="word-wrap: break-word">{{entry.activities}}</td>

@@ -66,11 +66,13 @@ export class HelperProvider {
     });
   }
 
-  addTimesheet(userId, hospital, monthOf) {
+  addTimesheet(userId, hospital, monthOf,month,year) {
     let that = this;
     this.db.collection(userId).add({
       hospital: hospital,
-      monthOf: monthOf
+      monthOf: monthOf,
+      month:month,
+      year:year
     })
       .then(function (docRef) {
         console.log("Document written with ID: ", docRef.id);
@@ -85,6 +87,24 @@ export class HelperProvider {
         console.error("Error adding document: ", error);
       });
 
+  }
+
+  updateTimesheet(userId,timesheetId, hospital, monthOf,month,year){
+    console.log('in update..',userId + ' ' + timesheetId + ' ' + hospital + ' ' + monthOf + ' ' + month + ' ' + year );
+    
+    this.db.doc(userId + '/' + timesheetId).
+    update({
+      hospital: hospital,
+      monthOf: monthOf,
+      month: month,
+      year: year
+    })
+    .then(function (docRef) {
+      console.log("Timesheet updated successfully");
+    })
+    .catch(function (error) {
+      console.error("Error adding document: ", error);
+    });
   }
 
   updateEntryInTimesheet(entryId, timesheetId, hospital, expendedTime,

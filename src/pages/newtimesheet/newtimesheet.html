@@ -1,7 +1,8 @@
 
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>New Timesheet</ion-title>
+    <ion-title *ngIf="!updateMode">New Timesheet</ion-title>
+    <ion-title *ngIf="updateMode">Edit Timesheet</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -53,7 +54,7 @@
             <button  ion-button full block color="danger" (click)="dismiss()" ><ion-icon name="close"></ion-icon>&nbsp;&nbsp;Cancel</button>      
           </ion-col>
           <ion-col>
-            <button  ion-button full block color="primary" (click)="addTimesheet()"  [disabled]="!meterForm.valid" ><ion-icon name="add"></ion-icon>&nbsp;&nbsp;Create</button>
+            <button  ion-button full block color="primary" (click)="addTimesheet()"  [disabled]="!meterForm.valid" ><ion-icon name="{{buttonIcon}}"></ion-icon>&nbsp;&nbsp;{{buttonText}}</button>
           </ion-col>
       </ion-row>
       </form>

@@ -4,6 +4,7 @@ import { NewEntryPage } from '../newentry/newentry';
 import { HelperProvider } from '../../providers/helper/helper';
 import { Observable } from 'rxjs';
 import { flattenStyles } from '@angular/platform-browser/src/dom/dom_renderer';
+import { NewtimesheetPage } from '../newtimesheet/newtimesheet';
 
 
 @Component({
@@ -55,6 +56,9 @@ export class EntriesPage {
     this.helper.deleteEntryTimesheet(this.timesheetDetails.id ,entry);
   }
 
+  updateTimesheet(){
+    this.navCtrl.push(NewtimesheetPage,{timesheetDetails:this.timesheetDetails});
+  }
   async presentAlertConfirm(item) {
     const alert = await this.alertController.create({
 

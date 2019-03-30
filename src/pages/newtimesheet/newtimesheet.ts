@@ -12,16 +12,37 @@ export class NewtimesheetPage {
 
 
   year:string;
-  month :string;
+  month :number;
   currentYear;
   currentMonth;
 
+  existingTimesheet:any;
+  updateMode:boolean = false;
+  buttonText:string;
+  buttonIcon:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private helper:HelperProvider, public viewCtrl: ViewController) {
+
     this.currentYear=new Date().getFullYear().toString();
     this.currentMonth = new Date().getMonth();
-    this.year = this.currentYear;
-    this.month = this.currentMonth;
+    this.existingTimesheet = this.navParams.get('timesheetDetails'); // Edit mode
+    if(this.existingTimesheet) {
+      this.updateMode = true;
+      this.buttonText = 'Update';
+      this.buttonIcon = "checkmark";
+      this.hospital = this.existingTimesheet.hospital;
+
+      this.year = this.existingTimesheet.year;
+      this.month = this.existingTimesheet.month;
+      console.log('Existing timesheet:' ,this.year + ' ' + this.month);
+      
+    } else {
+      this.buttonText = 'Create';
+      this.buttonIcon = "checkmark-circle-outline";
+      this.year = this.currentYear;
+      this.month = this.currentMonth;
+    }
+  
     console.log('Curr month:',this.month);
     
   }
@@ -34,19 +55,29 @@ export class NewtimesheetPage {
     console.log('Hospital:',this.hospital);
     let monthOf = this.getMonthName(this.month) + ' ' + this.year;
      console.log('Month of:',this.month + ' ' + this.year);
-    this.helper.addTimesheet(this.helper.getLoggedInUserProfile().email,this.hospital,monthOf);
-    this.dismiss();
+     if(this.existingTimesheet) {
+       this.updateTimesheet(monthOf);
+       this.navCtrl.pop();
+       this.navCtrl.pop();
+     } else {
+       this.helper.addTimesheet(this.helper.getLoggedInUserProfile().email,this.hospital,monthOf,this.month,this.year);
+       this.dismiss();
+     }
   }
 
+  updateTimesheet(monthOf){
+    this.helper.updateTimesheet(this.helper.getLoggedInUserProfile().email,this.existingTimesheet.id,this.hospital,monthOf,this.month,this.year);
+  }
   dismiss() {
     this.viewCtrl.dismiss();
   }
 
   getMonthName(no) {
-    console.log('month no:',no);
+
+    console.log('month no:');
     
     let month;
-    switch(no) {
+    switch(parseInt(no)) {
       case 0:
         // code block
         month= "Jan";
