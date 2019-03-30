@@ -25,10 +25,11 @@ export class EntriesPage {
     console.log('Timesheet object:', this.timesheetDetails);
     
     this.entries = this.helper.getTimesheetEntries(this.timesheetDetails.id);
-    this.entries.subscribe(()=>{
-        this.loading = false;
-    });
+    
     this.entriesClone = this.helper.getTimesheetEntries2(this.timesheetDetails.id);
+    this.entriesClone.subscribe(()=>{
+      this.loading = false;
+  });
 
     
   }
