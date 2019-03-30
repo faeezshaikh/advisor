@@ -182,7 +182,7 @@ getLoggedInUserProfile() {
 export(timesheet){
   console.log('Exporting...',timesheet);
   this.getRows(timesheet);
-  this.timesheetPdfTitle = timesheet.hospital + " " + timesheet.monthOf;
+  this.timesheetPdfTitle = timesheet.hospital + " - (" + timesheet.monthOf + ")";
 }
 
 getRows(timesheet){
@@ -259,7 +259,7 @@ exportActual(columns,rows,filename,timesheetTile){
   var doc = new jsPDF('p', 'pt');
   
   var header = function (data) {
-    doc.setFontSize(18);
+    doc.setFontSize(12);
     doc.setTextColor(40);
     doc.setFontStyle('normal');
     doc.text(timesheetTile, data.settings.margin.left, 50);
@@ -268,7 +268,7 @@ exportActual(columns,rows,filename,timesheetTile){
  
   
   doc.autoTable(columns, rows, 
-            {margin: {top: 80},
+            {margin: {top: 60},
              didDrawPage: header,
              theme:'striped',
              bodyStyles: {valign: 'top'},

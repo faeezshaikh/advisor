@@ -10,6 +10,25 @@
 }  
 
 page-login {
+
+   .center {
+      align-content: center;
+   }
+   
+   .titleicon {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      bottom: 0;
+      text-align:center;
+   }
+   .bottomTitleicon {
+      position: relative;
+      width: 100%;
+      left: 0;
+      bottom: 0;
+      text-align:center;
+   }
    @import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,700);
 
    $base-spacing-unit: 24px;

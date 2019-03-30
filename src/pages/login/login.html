@@ -11,7 +11,8 @@
       <ion-row>
 
           <!-- https://salemtimes-register.com/wp-content/uploads/2018/05/doctor_icon_1525363952.png -->
-
+          <ion-col>&nbsp;</ion-col>
+          <ion-col>
             <div style="text-align:center">
             <ion-card [ngClass]="{'barrel_roll': doRoll == true }">
                 <ion-card-header>
@@ -29,24 +30,14 @@
 
                     <div style="text-align:center">
                         <a class="button button--social-login button--facebook" href="#" (click)="signMeInWithFacebook()"><ion-icon name="logo-facebook"></ion-icon>Login With Facebook</a>
-                
-                
-                
-                      <!-- <button ion-button  class="fa fa-google" block outline large (click)="signMeInWithGoogle()">Sign in with Google</button> -->
                       <a class="button button--social-login button--google" href="#" (click)="signMeInWithGoogle()"><ion-icon name="logo-google"></ion-icon>Login With Google</a>
-                
-                
-                
-                      <!-- <button ion-button  class="fa fa-twitter" block outline large (click)="signMeInWithTwitter()">Sign in with Twitter</button> -->
                       <a class="button button--social-login button--twitter" href="#" (click)="signMeInWithTwitter()"><ion-icon name="logo-twitter"></ion-icon>Login With Twitter</a>
-                
                     </div>
-                
-
-
                 </ion-card-content>
               </ion-card>
               </div>
+            </ion-col>
+              <ion-col>&nbsp;</ion-col>
 
 
       </ion-row>
@@ -108,7 +99,7 @@
           </ion-grid>
   
   
-        <!-- <ion-footer [ngClass]="{'barrel_roll': doRoll == true }">
+        <ion-footer [ngClass]="{'barrel_roll': doRoll == true }">
             <ion-navbar color='grey'>
                   <div class="titleicon">
                     <ion-title style="font-family: Verdana;
@@ -122,6 +113,6 @@
             
               
               </ion-navbar>
-            </ion-footer> -->
+            </ion-footer>
     
   </ion-content>
