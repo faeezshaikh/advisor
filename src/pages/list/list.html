@@ -46,14 +46,7 @@
 
 
       <ion-item-options side="left">
-        <!-- <button ion-button color="primary" (click)="tbd()">
-              <ion-icon name="text"></ion-icon>
-              Text
-            </button>
-            <button ion-button color="secondary"  (click)="tbd()">
-              <ion-icon name="call"></ion-icon>
-              Call
-            </button> -->
+     
         <button ion-button color="secondary" (click)="preview(item)">
           <ion-icon name="eye"></ion-icon>
           Preview
@@ -68,6 +61,10 @@
           <ion-icon name="trash"></ion-icon>
           Delete
         </button>
+        <button ion-button color="secondary" (click)="updateTimesheet(item)">
+            <ion-icon name="create"></ion-icon>
+            Update
+          </button>
       </ion-item-options>
     </ion-item-sliding>
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {  NavController, NavParams,ViewController } from 'ionic-angular';
 import { HelperProvider } from '../../providers/helper/helper';
+import { ListPage } from '../list/list';
 
 
 @Component({
@@ -57,8 +58,7 @@ export class NewtimesheetPage {
      console.log('Month of:',this.month + ' ' + this.year);
      if(this.existingTimesheet) {
        this.updateTimesheet(monthOf);
-       this.navCtrl.pop();
-       this.navCtrl.pop();
+         this.navCtrl.pop();
      } else {
        this.helper.addTimesheet(this.helper.getLoggedInUserProfile().email,this.hospital,monthOf,this.month,this.year);
        this.dismiss();

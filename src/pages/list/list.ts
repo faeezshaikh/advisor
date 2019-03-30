@@ -38,7 +38,9 @@ export class ListPage {
     this.helper.deleteTimesheet(item);
   }
 
-
+  updateTimesheet(item) {
+    this.navCtrl.push(NewtimesheetPage,{timesheetDetails:item});
+  }
   openTimesheetModal() {
       let profileModal = this.modalCtrl.create(NewtimesheetPage, { userId: 8675309 });
       profileModal.present();
