@@ -19,6 +19,22 @@
 
   </ion-card>
 
+  <ion-grid *ngIf="loading">
+      <ion-row>&nbsp;</ion-row>
+      <ion-row>&nbsp;</ion-row>
+      <ion-row>&nbsp;</ion-row>
+      <ion-row>&nbsp;</ion-row>
+      <ion-row>&nbsp;</ion-row>
+      <ion-row>&nbsp;</ion-row>
+      <ion-row>&nbsp;</ion-row>
+     
+  
+      <div style="text-align:center">
+          <ion-spinner name="bubbles"></ion-spinner>
+          <p>Loading...</p>
+      </div>
+    </ion-grid>
+
   <div  *ngIf="previewMode &&  (entriesClone | async)?.length>0" >
 
       <style>

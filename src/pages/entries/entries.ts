@@ -16,6 +16,7 @@ export class EntriesPage {
   entries: Observable<any[]>;
   entriesClone: Observable<any[]>;
   previewMode:boolean=false;
+  loading:boolean=true;
 
   constructor(public navCtrl: NavController, 
     private helper: HelperProvider, public navParams: NavParams,private modalCtrl:ModalController,private alertController: AlertController) {
@@ -24,6 +25,9 @@ export class EntriesPage {
     console.log('Timesheet object:', this.timesheetDetails);
     
     this.entries = this.helper.getTimesheetEntries(this.timesheetDetails.id);
+    this.entries.subscribe(()=>{
+        this.loading = false;
+    });
     this.entriesClone = this.helper.getTimesheetEntries2(this.timesheetDetails.id);
 
     
