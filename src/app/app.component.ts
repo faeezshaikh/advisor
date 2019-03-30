@@ -17,12 +17,14 @@ export class MyApp {
   rootPage: any = LoginPage;
   loggedIn:boolean = false;
   loggedinUser:any;
+  version;
 
   pages: Array<{title: string, component: any,icon:string}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen ,  private helper:HelperProvider, public events:Events) {
     this.initializeApp();
 
+    this.version = this.helper.getVersion();
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'My Timesheets', component: ListPage, icon:'paper' },

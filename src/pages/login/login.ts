@@ -10,9 +10,11 @@ import { EventsService } from '../../providers/helper/eventsService';
   templateUrl: 'login.html',
 })
 export class LoginPage {
+  version;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private authService:AuthService,private helper:HelperProvider,
     private eventsService:EventsService) {
+      this.version = this.helper.getVersion();
   }
 
   ionViewDidLoad() {
