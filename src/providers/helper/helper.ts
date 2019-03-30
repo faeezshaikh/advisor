@@ -30,22 +30,18 @@ export class HelperProvider {
     }
   }
   getItems() {
-    return this.db.collection(this.collection_endpoint).valueChanges();
-  }
-
-  getItems2() {
-    return this.db.collection(this.collection_endpoint).snapshotChanges();
+    return this.db.collection(this.collection_endpoint, ref => ref.orderBy('lastUpdated', 'desc')).valueChanges();
   }
 
   getAdvisorDuties() {
     return this.db.collection('duties').valueChanges();
   }
   getTimesheetEntries(timesheetId) {
-    return this.db.collection(this.collection_endpoint).doc(timesheetId).collection('entries').valueChanges();
+    return this.db.collection(this.collection_endpoint).doc(timesheetId).collection('entries', ref => ref.orderBy('lastUpdated', 'desc')).valueChanges();
   }
 
   getTimesheetEntries2(timesheetId) {
-    return this.db.collection(this.collection_endpoint).doc(timesheetId).collection('entries').snapshotChanges();
+    return this.db.collection(this.collection_endpoint).doc(timesheetId).collection('entries', ref => ref.orderBy('lastUpdated', 'desc')).snapshotChanges();
   }
   deleteTimesheet(timesheet) {
     console.log('Timesheet details:', timesheet);
@@ -72,7 +68,8 @@ export class HelperProvider {
       hospital: hospital,
       monthOf: monthOf,
       month:month,
-      year:year
+      year:year,
+      lastUpdated: new Date().toLocaleString()
     })
       .then(function (docRef) {
         console.log("Document written with ID: ", docRef.id);
@@ -97,7 +94,8 @@ export class HelperProvider {
       hospital: hospital,
       monthOf: monthOf,
       month: month,
-      year: year
+      year: year,
+      lastUpdated: new Date().toLocaleString()
     })
     .then(function (docRef) {
       console.log("Timesheet updated successfully");
@@ -116,7 +114,8 @@ export class HelperProvider {
         expendedTime: expendedTime,
         entryDate: entryDate,
         dutyNo: dutyNo,
-        activities: activities
+        activities: activities,
+        lastUpdated: new Date().toLocaleString()
       })
       .then(function (docRef) {
         console.log("Document updated successfully");
@@ -136,7 +135,8 @@ export class HelperProvider {
         expendedTime: expendedTime,
         entryDate: entryDate,
         dutyNo: dutyNo,
-        activities: activities
+        activities: activities,
+        lastUpdated: new Date().toLocaleString()
       })
       .then(function (docRef) {
         console.log("Document written with ID: ", docRef.id);

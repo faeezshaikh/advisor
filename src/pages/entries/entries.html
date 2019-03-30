@@ -135,30 +135,19 @@
         
           </ion-grid>
 
-      <ion-item-sliding  *ngFor="let entry of entries | async | reverse">
+      <ion-item-sliding  *ngFor="let entry of entries | async ">
         <ion-item   (click)="itemTapped($event, entry)" detail>
           
           <h2><ion-icon name="clipboard"></ion-icon> &nbsp; Duty No: {{entry.dutyNo}}</h2>
             <p> <ion-icon name="alarm"></ion-icon> &nbsp; Expended Time:  {{entry.expendedTime}} hrs.</p>
             <p> <ion-icon name="calendar"></ion-icon> &nbsp;  Date: {{entry.entryDate}}</p>
             <p> <ion-icon name="construct"></ion-icon> &nbsp;  Activity: {{entry.activities}}</p>
-            <!-- <button (click)="your_function_name()" ion-button clear item-end>
-                <ion-icon name="arrow-round-forward"></ion-icon>
-              </button> -->
-
               <ion-icon name="arrow-forward" item-end></ion-icon>
           </ion-item>
 
 
         <ion-item-options side="left">
-            <!-- <button ion-button color="primary" (click)="tbd()">
-              <ion-icon name="text"></ion-icon>
-              Text
-            </button>
-            <button ion-button color="secondary"  (click)="tbd()">
-              <ion-icon name="call"></ion-icon>
-              Call
-            </button> -->
+           
             <button ion-button color="danger"  (click)="presentAlertConfirm(entry)">
                 <ion-icon name="trash"></ion-icon>
                 Delete

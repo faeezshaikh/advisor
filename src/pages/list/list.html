@@ -55,7 +55,7 @@
 
 
   <ion-list>
-    <ion-item-sliding *ngFor="let item of items | async | reverse">
+    <ion-item-sliding *ngFor="let item of items | async ">
       {{item.hospital}}
 
       <ion-item (click)="itemTapped($event, item)">

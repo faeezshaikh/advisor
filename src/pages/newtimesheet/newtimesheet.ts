@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {  NavController, NavParams,ViewController } from 'ionic-angular';
 import { HelperProvider } from '../../providers/helper/helper';
-import { ListPage } from '../list/list';
 
 
 @Component({

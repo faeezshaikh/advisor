@@ -15,9 +15,9 @@ export class ListPage {
   selectedItem: any;
   loading:boolean = true;
   
-  // icons: string[];
+
   items: Observable<any[]>;
-  // items: Array<{title: string, note: string, icon: string}>;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public helper:HelperProvider,
      private modalCtrl:ModalController,public alertController: AlertController) {
