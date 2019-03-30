@@ -57,7 +57,7 @@ export class ListPage {
   async presentAlertConfirm(item) {
     const alert = await this.alertController.create({
 
-      message: 'Are you sure you want to delete this timesheet for ' + item.hospital,
+      message: 'Are you sure you want to delete this timesheet for: <strong>' + item.hospital + '</strong>',
       buttons: [
         {
           text: 'Cancel',

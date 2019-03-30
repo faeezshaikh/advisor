@@ -3,7 +3,6 @@ import { NavController, NavParams,ModalController ,AlertController} from 'ionic-
 import { NewEntryPage } from '../newentry/newentry';
 import { HelperProvider } from '../../providers/helper/helper';
 import { Observable } from 'rxjs';
-import { flattenStyles } from '@angular/platform-browser/src/dom/dom_renderer';
 import { NewtimesheetPage } from '../newtimesheet/newtimesheet';
 
 
@@ -67,7 +66,7 @@ export class EntriesPage {
   async presentAlertConfirm(item) {
     const alert = await this.alertController.create({
 
-      message: 'Are you sure you want to delete this timesheet for ' + item.hospital,
+      message: 'Are you sure you want to delete this activity for: <strong>' + item.entryDate + '</strong>',
       buttons: [
         {
           text: 'Cancel',
