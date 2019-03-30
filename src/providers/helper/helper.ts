@@ -40,7 +40,7 @@ export class HelperProvider {
   }
 
   getAdvisorDuties() {
-    return this.db.collection('duties').valueChanges();
+    return this.db.collection('duties', ref => ref.orderBy('no', 'asc')).valueChanges();
   }
   getTimesheetEntries(timesheetId) {
     return this.db.collection(this.collection_endpoint).doc(timesheetId).collection('entries', ref => ref.orderBy('lastUpdated', 'desc')).valueChanges();
