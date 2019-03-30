@@ -9,7 +9,7 @@
 
 <ion-content>
 
-    <ion-spinner name="bubbles"></ion-spinner>
+    
   <!-- Refer this page
     https://stackoverflow.com/questions/38057537/how-to-check-the-length-of-an-observable-array -->
   <ion-grid *ngIf="(items | async)?.length==0">
@@ -33,6 +33,27 @@
     </ion-row>
 
   </ion-grid>
+
+
+  <ion-grid *ngIf="loading">
+      <ion-row>&nbsp;</ion-row>
+      <ion-row>&nbsp;</ion-row>
+      <ion-row>&nbsp;</ion-row>
+      <ion-row>&nbsp;</ion-row>
+      <ion-row>&nbsp;</ion-row>
+      <ion-row>&nbsp;</ion-row>
+      <ion-row>&nbsp;</ion-row>
+      <ion-row>&nbsp;</ion-row>
+      <ion-row>&nbsp;</ion-row>
+      <ion-row>&nbsp;</ion-row>
+  
+      <div style="text-align:center">
+          <ion-spinner name="bubbles"></ion-spinner>
+          <p>Loading...</p>
+      </div>
+    </ion-grid>
+
+
   <ion-list>
     <ion-item-sliding *ngFor="let item of items | async | reverse">
       {{item.hospital}}

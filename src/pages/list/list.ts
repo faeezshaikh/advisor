@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams,ModalController,AlertController } from 'ionic-angular';
+import { NavController, NavParams,ModalController,AlertController, Loading } from 'ionic-angular';
 import { Observable } from 'rxjs';
 import { HelperProvider } from '../../providers/helper/helper';
 import { EntriesPage } from '../entries/entries';
@@ -13,6 +13,7 @@ import { NewtimesheetPage } from '../newtimesheet/newtimesheet';
 })
 export class ListPage {
   selectedItem: any;
+  loading:boolean = true;
   
   // icons: string[];
   items: Observable<any[]>;
@@ -23,6 +24,7 @@ export class ListPage {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
     this.items = this.helper.getItems();
+    this.items.subscribe(()=> this.loading = false);
   }
 
   itemTapped(event, item) {
