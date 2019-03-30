@@ -13,6 +13,7 @@ import 'jspdf-autotable';
 @Injectable()
 export class HelperProvider {
   items: Observable<any[]>;
+  // let jsPDF;
   collection_endpoint;
   timesheetPdfTitle:string;
   loggedInUser:any= {};
