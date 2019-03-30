@@ -15,19 +15,45 @@
           <ion-label floating>Hospital Name</ion-label>
           <ion-input  [(ngModel)]="hospital" name="id" type="text" required minlength="3"></ion-input>
         </ion-item>
-        <ion-item>
-          <ion-label floating>Month of</ion-label>
-          <!-- <ion-input [(ngModel)]="text" name="password" id='pwd' type="password" required></ion-input> -->
-          <ion-datetime display-format="MM/YYYY" picker-format="MMMM YYYY" name="monthOf" [(ngModel)]="monthOf" required></ion-datetime>
-        </ion-item>
+       
+
+        <ion-list>
+            <ion-list-header>Set Month</ion-list-header>
+          
+            <ion-item>
+              <ion-label>Year</ion-label>
+              <ion-select [(ngModel)]="year"  name="something">
+                <ion-option value="{{currentYear}}">{{currentYear}}</ion-option>
+                <ion-option value="{{currentYear-1}}">{{currentYear-1}}</ion-option>
+              </ion-select>
+            </ion-item>
+          
+            <ion-item>
+              <ion-label>Month</ion-label>
+              <ion-select name="month" [(ngModel)]="month">
+                <ion-option value="0">January</ion-option>
+                <ion-option value="1">February</ion-option>
+                <ion-option value="2">March</ion-option>
+                <ion-option value="3">April</ion-option>
+                <ion-option value="4">May</ion-option>
+                <ion-option value="5">June</ion-option>
+                <ion-option value="6">July</ion-option>
+                <ion-option value="7">August</ion-option>
+                <ion-option value="8">September</ion-option>
+                <ion-option value="9">October</ion-option>
+                <ion-option value="10">November</ion-option>
+                <ion-option value="11">December</ion-option>
+              </ion-select>
+            </ion-item>
+          
+          </ion-list>
+
         <ion-row>
           <ion-col>
             <button  ion-button full block color="danger" (click)="dismiss()" ><ion-icon name="close"></ion-icon>&nbsp;&nbsp;Cancel</button>      
-
           </ion-col>
           <ion-col>
-            <button  ion-button full block color="primary" (click)="addTimesheet()"  [disabled]="!meterForm.valid" ><ion-icon name="log-in"></ion-icon>&nbsp;&nbsp;Create</button>
-
+            <button  ion-button full block color="primary" (click)="addTimesheet()"  [disabled]="!meterForm.valid" ><ion-icon name="add"></ion-icon>&nbsp;&nbsp;Create</button>
           </ion-col>
       </ion-row>
       </form>
