@@ -35,55 +35,58 @@
       </div>
     </ion-grid>
 
-  <div  *ngIf="previewMode &&  (entriesClone | async)?.length>0" >
 
-      <style>
-          table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-            word-wrap: break-word;
-            font-size:20px;
+        <div  *ngIf="previewMode &&  (entriesClone | async)?.length>0" >
+
+            <style>
+                table {
+                  font-family: arial, sans-serif;
+                  border-collapse: collapse;
+                  width: 100%;
+                  word-wrap: break-word;
+                  font-size:15px;
+                }
+                
+                td, th {
+              border: solid 1px #777;
+              padding: 5px;
+              text-align: left;
           }
-          
-          td, th {
-        border: solid 1px #777;
-        padding: 5px;
-        text-align: left;
-    }
-     
-           /* tr:nth-child(even) {
-            background-color: #f0f0f0;
-          }  */
-          </style>
+           
+                 /* tr:nth-child(even) {
+                  background-color: #f0f0f0;
+                }  */
+                </style>
+      
+      
+            <table id="my-table" class="table pure-table" style="table-layout: fixed; width: 100%" >
+              <tr>
+                <th style="background-color:#488aff; color:white"><strong>Date Activity Performed</strong></th>
+                <th style="background-color:#488aff; color:white"><strong>Hospital at which Activity Performed</strong></th>
+                <th style="background-color:#488aff; color:white"><strong>Duty from List Above</strong></th>
+                <th style="background-color:#488aff; color:white"><strong>Time Expended (In Quarter Hrs)</strong></th>
+                <th style="background-color:#488aff; color:white"><strong>Activities Performed Under this Duty (Brief Description of Activity is REQUIRED)</strong></th>
+              </tr> 
+              <tr *ngFor="let entry of entries | async ">
+                <td>{{entry.entryDate}}</td>
+                <td>{{entry.hospital}}</td>
+                <td>{{entry.dutyNo}}</td>
+                <td>{{entry.expendedTime}}</td>
+                <td style="word-wrap: break-word">{{entry.activities}}</td>
+              </tr>
+             
+            </table>
+      
+            <ion-item>
+                <ion-row>
+                    <ion-col><button ion-button block (click)="export()"><ion-icon name="cloud-download"></ion-icon>&nbsp;Export</button></ion-col>
+                    <ion-col> <button ion-button block outline   (click)='cancel()'>Back</button></ion-col>
+                </ion-row>
+            </ion-item>
+      
+        </div>
 
-
-      <table id="my-table" class="table pure-table" style="table-layout: fixed; width: 100%" >
-        <tr>
-          <th style="background-color:#488aff; color:white"><strong>Date Activity Performed</strong></th>
-          <th style="background-color:#488aff; color:white"><strong>Hospital at which Activity Performed</strong></th>
-          <th style="background-color:#488aff; color:white"><strong>Duty from List Above</strong></th>
-          <th style="background-color:#488aff; color:white"><strong>Time Expended (In Quarter Hrs)</strong></th>
-          <th style="background-color:#488aff; color:white"><strong>Activities Performed Under this Duty (Brief Description of Activity is REQUIRED)</strong></th>
-        </tr> 
-        <tr *ngFor="let entry of entries | async ">
-          <td>{{entry.entryDate}}</td>
-          <td>{{entry.hospital}}</td>
-          <td>{{entry.dutyNo}}</td>
-          <td>{{entry.expendedTime}}</td>
-          <td style="word-wrap: break-word">{{entry.activities}}</td>
-        </tr>
-       
-      </table>
-
-      <ion-item>
-          <ion-row>
-              <ion-col><button ion-button block (click)="export()"><ion-icon name="cloud-download"></ion-icon>&nbsp;Export</button></ion-col>
-              <ion-col> <button ion-button block outline   (click)='cancel()'>Back</button></ion-col>
-          </ion-row>
-      </ion-item>
-
-  </div>
+ 
 
   <ion-grid *ngIf="previewMode && (entries | async)?.length==0">
       <ion-row>&nbsp;</ion-row>
@@ -106,6 +109,8 @@
       </ion-row>
   
     </ion-grid>
+
+
 
   <ion-list *ngIf="!previewMode">
   
