@@ -26,6 +26,7 @@ import { DutiesPage } from '../pages/duties/duties';
 import { LoginPage } from '../pages/login/login';
 import { AuthService } from '../providers/helper/authservice';
 import { EventsService } from '../providers/helper/eventsService';
+import { HighlightPipe } from '../providers/helper/highlightPipe';
 
 
 
@@ -37,6 +38,7 @@ import { EventsService } from '../providers/helper/eventsService';
     EntriesPage,
     NewtimesheetPage,
     ReversePipe,
+    HighlightPipe,
     NewEntryPage,
     DutiesPage,
     LoginPage

@@ -41,4 +41,8 @@ ion-card {
    // color: #fff;
    color: #424242;;
  }
+
+ :host ::ng-deep .search-highlight{
+  background-color: #F2E366;
+}
 }

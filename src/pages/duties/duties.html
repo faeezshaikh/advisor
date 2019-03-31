@@ -3,18 +3,26 @@
   <ion-navbar color="primary">
     <ion-title>Advisory Duties</ion-title>
   </ion-navbar>
+  <ion-toolbar>
+      <ion-searchbar placeholder="Search for duties"  [showCancelButton]="shouldShowCancel" (ionInput)="filterItems($event)" (ionCancel)="onCancel($event)">
+        </ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
 
-    <ion-searchbar placeholder="Search for duties"  [showCancelButton]="shouldShowCancel" (ionInput)="filterItems($event)" (ionCancel)="onCancel($event)">
-      </ion-searchbar>
+    <!-- <ion-searchbar placeholder="Search for duties"  [showCancelButton]="shouldShowCancel" (ionInput)="filterItems($event)" (ionCancel)="onCancel($event)">
+      </ion-searchbar> -->
   <ion-card *ngFor="let duty of duties | async"  (click) = "itemTapped(duty)">
       <ion-card-header>
           Duty No: {{duty.no}}
         </ion-card-header>
       <ion-card-content>
         {{duty.text}}
+        <!-- {{duty.text | highlight :'process'}} -->
+        <!-- <span [innerHTML]="duty.text | highlight:'process'"></span> -->
+
+
 
       </ion-card-content>
   </ion-card>
